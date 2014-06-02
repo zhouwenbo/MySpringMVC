@@ -43,7 +43,7 @@ public class PhoneService {
 
                 //.addToSet("name",phone.getName()).addToSet("size", phone.getSize());
       /*  update.addToSet("name",phone.getName());
-        update.addToSet("size", phone.getSize());
+       //// update.addToSet("size", phone.getSize());
         update.addToSet("price", phone.getPrice());
         update.addToSet("weight", phone.getWeight());*/
         phoneRepo.update(query,update);
