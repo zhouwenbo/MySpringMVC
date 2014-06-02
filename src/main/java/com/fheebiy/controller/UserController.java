@@ -33,6 +33,9 @@ public class UserController {
 
     @RequestMapping("/login")
     public void doLogin(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestParam(required = true)String user_name, @RequestParam(required = true)String password,@RequestParam(required = false)String redirectURL) throws IOException {
+
+       String x ;
+
         User user = userService.doLogin(user_name, password);
         if(user == null){
             if(!StringUtils.isEmpty(redirectURL)){
