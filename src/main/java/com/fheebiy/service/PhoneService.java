@@ -1,0 +1,51 @@
+package com.fheebiy.service;
+
+import com.fheebiy.model.domain.Phone;
+import com.fheebiy.repo.impl.PhoneRepoImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+/**
+ * Created by bob zhou on 14-4-19.
+ */
+@Service
+public class PhoneService {
+
+    @Autowired
+    private PhoneRepoImpl phoneRepo;
+
+    public Phone getPhoneById(long phone_id){
+        Query query = new Query();
+        query.addCriteria(Criteria.where("phone_id").is(phone_id));
+        return phoneRepo.findOne(query);
+    }
+
+    public void save(Phone phone){
+         phoneRepo.save(phone);
+    }
+
+    public List<Phone> getList(double price){
+        Query query = new Query();
+        query.addCriteria(Criteria.where("price").gt(price).and("name").is("iphone5s"));
+        return phoneRepo.find(query);
+    }
+
+
+    public void update(Phone phone){
+        Query query = new Query();
+        query.addCriteria(Criteria.where("_id").is("53536b1ec2f9ae58e26fc6b3"));
+        Update update = Update.update("price",phone.getPrice());
+
+                //.addToSet("name",phone.getName()).addToSet("size", phone.getSize());
+      /*  update.addToSet("name",phone.getName());
+        update.addToSet("size", phone.getSize());
+        update.addToSet("price", phone.getPrice());
+        update.addToSet("weight", phone.getWeight());*/
+        phoneRepo.update(query,update);
+    }
+}
