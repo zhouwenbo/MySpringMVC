@@ -21,7 +21,7 @@ public class LoginValidateInterceptor implements HandlerInterceptor {
         if(user == null){
            // httpServletRequest.getRequestDispatcher("../respage/login.html").forward(httpServletRequest, httpServletResponse);
             String url = getRequestURL(httpServletRequest);
-            httpServletResponse.sendRedirect("/mvc/respage/login.html?redirectURL="+url);
+            httpServletResponse.sendRedirect("/respage/login.html?redirectURL="+url);
             return false;
         }
         return true;

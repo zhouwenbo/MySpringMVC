@@ -27,26 +27,23 @@ public class UserController {
     public String editUser(Model model,@RequestParam(required=true)Long user_id){
         User user = userService.getUserById(user_id);
         model.addAttribute("user", user);
-        return "user/edit";
+        return "user/ctex";
     }
 
 
     @RequestMapping("/login")
     public void doLogin(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestParam(required = true)String user_name, @RequestParam(required = true)String password,@RequestParam(required = false)String redirectURL) throws IOException {
-
-       String x ;
-
         User user = userService.doLogin(user_name, password);
         if(user == null){
             if(!StringUtils.isEmpty(redirectURL)){
-                httpServletResponse.sendRedirect("/mvc/respage/login.html?redirectURL="+redirectURL);
+                httpServletResponse.sendRedirect("/respage/login.html?redirectURL="+redirectURL);
             }
         }else{
             httpServletRequest.getSession().setAttribute("user", user);
             if(!StringUtils.isEmpty(redirectURL)){
                 httpServletResponse.sendRedirect(redirectURL);
             }else{
-                httpServletResponse.sendRedirect("/mvc/index.jsp");
+                httpServletResponse.sendRedirect("/index.jsp");
             }
         }
     }
