@@ -33,7 +33,8 @@
 
     <!-- A typical configuration for a JSP+JSTL ViewResolver -->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/page/"/>
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
         <property name="order" value="2" />
         <property name="viewNames" value="*jsp" />
@@ -43,8 +44,7 @@
     <!--  THYMELEAF-SPECIFIC ARTIFACTS                                    -->
     <!--  TemplateResolver <- TemplateEngine <- ViewResolver              -->
     <!-- **************************************************************** -->
-    <bean id="templateResolver"
-          class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
+    <bean id="templateResolver" class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
         <property name="prefix" value="/WEB-INF/templates/" />
         <property name="suffix" value=".html" />
         <property name="characterEncoding" value="UTF-8"/>

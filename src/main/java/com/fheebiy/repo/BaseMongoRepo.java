@@ -81,11 +81,11 @@ public abstract class BaseMongoRepo<T> {
 
     /**
      * 分页查询
-     * @param page
+     * @param jsp
      * @param query
      * @return
      */
-    //public Page<T> findPage(Page<T> page,Query query);
+    //public Page<T> findPage(Page<T> jsp,Query query);
 
     /**
      * 求数据总和
