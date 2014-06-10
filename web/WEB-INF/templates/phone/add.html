@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>添加phone</title>
+</head>
+<body>
+<form action="/phone/save.htm" method="post">
+    <table>
+        <tr>
+            <td>phone_id:</td>
+            <td><input type="text" name="phone_id" placeholder="请输入id"/></td>
+        </tr>
+        <tr>
+            <td>名称:</td>
+            <td><input type="text" name="name" placeholder="请输入名字"/></td>
+        </tr>
+        <tr>
+            <td>尺寸:</td>
+            <td><input type="text" name="size" placeholder="请输入尺寸"/></td>
+        </tr>
+        <tr>
+            <td>价格:</td>
+            <td><input type="text" name="price" placeholder="请输入价格"/></td>
+        </tr>
+
+        <tr>
+            <td>重量:</td>
+            <td><input type="text" name="weight" placeholder="请输入重量"/></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="提交" placeholder="请输入重量"/></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

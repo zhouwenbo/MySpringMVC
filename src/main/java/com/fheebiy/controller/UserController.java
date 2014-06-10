@@ -27,7 +27,7 @@ public class UserController {
     public String editUser(Model model,@RequestParam(required=true)Long user_id){
         User user = userService.getUserById(user_id);
         model.addAttribute("user", user);
-        return "user/ctex";
+        return "user/detail";
     }
 
 

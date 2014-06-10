@@ -29,9 +29,9 @@ public class PhoneService {
          phoneRepo.save(phone);
     }
 
-    public List<Phone> getList(double price){
+    public List<Phone> getList(double price,String name){
         Query query = new Query();
-        query.addCriteria(Criteria.where("price").gt(price).and("name").is("iphone5s"));
+        query.addCriteria(Criteria.where("name").is(name)/*.and("name").is("iphone5s")*/);
         return phoneRepo.find(query);
     }
 

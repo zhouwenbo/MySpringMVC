@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>查询user</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td> user_id</td>
+        <td th:text="${user.user_id}"></td>
+    </tr>
+    <tr>
+        <td> name</td>
+        <td th:text="${user.name}"></td>
+    </tr>
+    <tr>
+        <td> age</td>
+        <td th:text="${user.age}"></td>
+    </tr>
+</table>
+</body>
+</html>

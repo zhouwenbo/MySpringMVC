@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>查询hero</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td> user_id</td>
+        <td th:text="${hero.hero_id}"></td>
+    </tr>
+    <tr>
+        <td> name</td>
+        <td th:text="${hero.name}"></td>
+    </tr>
+    <tr>
+        <td> age</td>
+        <td th:text="${hero.age}"></td>
+    </tr>
+    <tr>
+        <td> from</td>
+        <td th:text="${hero.from}"></td>
+    </tr>
+    <tr>
+        <td> skill</td>
+        <td th:text="${hero.skill}"></td>
+    </tr>
+</table>
+</body>
+</html>

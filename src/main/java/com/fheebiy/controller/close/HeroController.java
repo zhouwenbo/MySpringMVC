@@ -39,7 +39,7 @@ public class HeroController {
     public String find(Model model, @PathVariable("hid") long hero_id){
         Hero hero = heroService.getHeroById(hero_id);
         model.addAttribute("hero", hero);
-        return "hero/edit";
+        return "hero/detail";
     }
 
 }
