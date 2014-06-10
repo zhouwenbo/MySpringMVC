@@ -1,7 +1,7 @@
 package com.fheebiy.service;
 
 import com.fheebiy.dao.HeroDao;
-import com.fheebiy.model.domain.Hero;
+import com.fheebiy.domain.Hero;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

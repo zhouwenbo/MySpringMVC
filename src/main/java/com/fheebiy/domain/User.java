@@ -1,4 +1,4 @@
-package com.fheebiy.model.domain;
+package com.fheebiy.domain;
 
 /**
  * Created by zwb on 14-3-22.

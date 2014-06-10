@@ -1,6 +1,6 @@
 package com.fheebiy.interceptor;
 
-import com.fheebiy.model.domain.User;
+import com.fheebiy.domain.User;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 

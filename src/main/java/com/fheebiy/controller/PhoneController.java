@@ -1,11 +1,10 @@
 package com.fheebiy.controller;
 
-import com.fheebiy.model.domain.Phone;
+import com.fheebiy.domain.Phone;
 import com.fheebiy.repo.impl.PhoneRepoImpl;
 import com.fheebiy.service.PhoneService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;

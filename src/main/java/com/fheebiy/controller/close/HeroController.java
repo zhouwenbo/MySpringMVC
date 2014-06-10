@@ -1,6 +1,6 @@
 package com.fheebiy.controller.close;
 
-import com.fheebiy.model.domain.Hero;
+import com.fheebiy.domain.Hero;
 import com.fheebiy.service.HeroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

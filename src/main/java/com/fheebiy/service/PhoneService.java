@@ -1,6 +1,6 @@
 package com.fheebiy.service;
 
-import com.fheebiy.model.domain.Phone;
+import com.fheebiy.domain.Phone;
 import com.fheebiy.repo.impl.PhoneRepoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;

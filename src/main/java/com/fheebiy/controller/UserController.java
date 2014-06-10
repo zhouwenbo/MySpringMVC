@@ -1,6 +1,6 @@
 package com.fheebiy.controller;
 
-import com.fheebiy.model.domain.User;
+import com.fheebiy.domain.User;
 import com.fheebiy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

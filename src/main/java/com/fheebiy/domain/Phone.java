@@ -1,8 +1,6 @@
-package com.fheebiy.model.domain;
+package com.fheebiy.domain;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**

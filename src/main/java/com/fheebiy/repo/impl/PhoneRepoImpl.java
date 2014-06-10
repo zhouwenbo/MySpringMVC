@@ -1,6 +1,6 @@
 package com.fheebiy.repo.impl;
 
-import com.fheebiy.model.domain.Phone;
+import com.fheebiy.domain.Phone;
 import com.fheebiy.repo.BaseMongoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

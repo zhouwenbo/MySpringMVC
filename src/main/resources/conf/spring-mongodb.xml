@@ -12,7 +12,8 @@
 
     <mongo:mongo id="mongo" host="localhost" port="27017"/>
     <mongo:db-factory id="mongoDbFactory" dbname="user" mongo-ref="mongo" />
-
+    <mongo:mapping-converter base-package="com.fheebiy.domain" />
+    <mongo:repositories base-package="com.fheebiy.repo"/>
     <bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
         <constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
     </bean>

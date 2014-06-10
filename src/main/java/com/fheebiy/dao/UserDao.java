@@ -1,6 +1,6 @@
 package com.fheebiy.dao;
 
-import com.fheebiy.model.domain.User;
+import com.fheebiy.domain.User;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
