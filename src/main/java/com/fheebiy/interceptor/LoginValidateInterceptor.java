@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Created by Administrator on 14-4-9.
+ * Created by bob zhou on 14-4-9.
  */
 public class LoginValidateInterceptor implements HandlerInterceptor {
 

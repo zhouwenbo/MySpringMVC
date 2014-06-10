@@ -6,7 +6,9 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 
-
+/**
+ * Created by bob zhou on 14-4-19.
+ */
 public abstract class BaseMongoRepo<T> {
 
     /**

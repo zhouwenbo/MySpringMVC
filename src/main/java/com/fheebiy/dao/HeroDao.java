@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * Created by Administrator on 14-4-9.
+ * Created by bob zhou on 14-4-9.
  */
 @Repository
 public interface HeroDao {

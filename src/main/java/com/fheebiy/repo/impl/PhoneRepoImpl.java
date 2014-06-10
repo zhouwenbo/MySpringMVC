@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Repository;
 
 /**
- * Created by Administrator on 14-4-19.
+ * Created by bob zhou on 14-4-19.
  */
 @Repository
 public class PhoneRepoImpl extends BaseMongoRepo<Phone>{

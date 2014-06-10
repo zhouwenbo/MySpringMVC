@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * Created by Administrator on 14-3-22.
+ * Created by bob zhou on 14-3-22.
  */
 @Repository
 public interface UserDao {
