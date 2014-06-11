@@ -2,6 +2,7 @@ package com.fheebiy.controller;
 
 import com.fheebiy.domain.Phone;
 import com.fheebiy.repo.PhoneRepo;
+import com.fheebiy.repo.impl.PhoneRepoImpl;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,11 +27,11 @@ public class PhoneController {
     PhoneRepoImpl phoneRepo;*/
 
     @Autowired
-    PhoneRepo repo;
+    PhoneRepo phoneRepo;
 
     @RequestMapping(value = "/find/{pid}")
     public String editPhone(Model model, @PathVariable("pid") long phone_id) {
-        Phone phone = repo.findById(phone_id);
+        Phone phone = phoneRepo.findById(phone_id);
         model.addAttribute("phone", phone);
         return "success";
     }
@@ -42,7 +43,7 @@ public class PhoneController {
 
     @RequestMapping("/save")
     public String savePhone(Phone phone) {
-        repo.save(phone);
+       // phoneRepo.save(phone);
         return "success";
     }
 
@@ -69,7 +70,7 @@ public class PhoneController {
             price = Double.parseDouble(priceStr);
         }
 
-        List<Phone> list = repo.getPhoneList(name,phone_id,price);
+        List<Phone> list = phoneRepo.getPhoneList(name,phone_id,price);
         model.addAttribute("list", list);
         return "phone/list";
     }
