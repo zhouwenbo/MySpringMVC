@@ -32,7 +32,7 @@
         <tr>
             <td>重量</td>
             <td><input type="text" name="weight" value="${phone.weight}"/></td>
-            <td><input type="text" name="_id" value="${phone._id}"/></td>
+            <td><input type="text" name="id" value="${phone.id}"/></td>
         </tr>
         <tr>
             <td></td>

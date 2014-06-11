@@ -1,4 +1,4 @@
-package com.fheebiy.repo;
+package com.fheebiy.repo.deprecated;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.query.Update;
 
 /**
  * Created by bob zhou on 14-4-19.
+ * @deprecated
  */
 public abstract class BaseMongoRepo<T> {
 

@@ -1,7 +1,8 @@
 package com.fheebiy.service;
 
 import com.fheebiy.domain.Phone;
-import com.fheebiy.repo.impl.PhoneRepoImpl;
+import com.fheebiy.repo.PhoneRepo;
+import com.fheebiy.repo.deprecated.PhoneRepoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -17,22 +18,25 @@ import java.util.List;
 public class PhoneService {
 
     @Autowired
-    private PhoneRepoImpl phoneRepo;
+    private PhoneRepoImpl repo;
+
+    @Autowired
+    private PhoneRepo phoneRepo;
 
     public Phone getPhoneById(long phone_id){
         Query query = new Query();
         query.addCriteria(Criteria.where("phone_id").is(phone_id));
-        return phoneRepo.findOne(query);
+        return repo.findOne(query);
     }
 
     public void save(Phone phone){
-         phoneRepo.save(phone);
+         repo.save(phone);
     }
 
     public List<Phone> getList(double price,String name){
         Query query = new Query();
         query.addCriteria(Criteria.where("name").is(name)/*.and("name").is("iphone5s")*/);
-        return phoneRepo.find(query);
+        return repo.find(query);
     }
 
 
@@ -46,6 +50,6 @@ public class PhoneService {
        //// update.addToSet("size", phone.getSize());
         update.addToSet("price", phone.getPrice());
         update.addToSet("weight", phone.getWeight());*/
-        phoneRepo.update(query,update);
+        repo.update(query, update);
     }
 }

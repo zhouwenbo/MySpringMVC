@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Phone {
 
     @Id
-    private String _id;
+    private String id;
 
     private long phone_id;
 
@@ -22,12 +22,12 @@ public class Phone {
 
     private int weight;
 
-    public String get_id() {
-        return _id;
+    public String getId() {
+        return id;
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public long getPhone_id() {
@@ -71,8 +71,8 @@ public class Phone {
     }
 
    /* @PersistenceConstructor
-    public Phone(long phone_id, String name, double size, double price, int weight,ObjectId _id) {
-        this._id = _id;
+    public Phone(long phone_id, String name, double size, double price, int weight,ObjectId id) {
+        this.id = id;
         this.phone_id = phone_id;
         this.name = name;
         this.size = size;
