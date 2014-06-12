@@ -2,6 +2,8 @@ package com.fheebiy.repo.impl;
 
 import com.fheebiy.domain.Phone;
 import com.fheebiy.repo.PhoneRepo;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,7 +21,7 @@ import java.util.List;
  * Created by bob zhou on 14-6-11.
  */
 @Repository
-public class PhoneRepoImpl implements PhoneRepo{
+public class PhoneRepoImpl implements PhoneRepo {
 
     @Autowired
     protected MongoTemplate mongoTemplate;
@@ -32,25 +34,26 @@ public class PhoneRepoImpl implements PhoneRepo{
     }
 
     @Override
-    public void save(Phone phone){
+    public void save(Phone phone) {
         mongoTemplate.save(phone);
     }
 
     @Override
-    public List<Phone> getPhoneList(String name,long phone_id, double price){
+    public List<Phone> getPhoneList(String name, long phone_id, double price) {
         Query query = new Query();
         Criteria criteria = new Criteria();
-        if(StringUtils.isNotEmpty(name)){
-            criteria.is("name").is(name);
+        if (StringUtils.isNotEmpty(name)) {
+            criteria.and("name").is(name);
         }
-        if(phone_id > 0){
+        if (phone_id > 0) {
             criteria.and("phone_id").is(phone_id);
         }
-        if(price > 0){
+        if (price > 0) {
             criteria.and("price").is(price);
         }
         query.addCriteria(criteria);
         return mongoTemplate.find(query, Phone.class);
     }
- 
+
+
 }

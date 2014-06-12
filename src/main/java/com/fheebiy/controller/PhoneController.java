@@ -1,8 +1,8 @@
 package com.fheebiy.controller;
 
+import com.fheebiy.common.MongoUtil;
 import com.fheebiy.domain.Phone;
 import com.fheebiy.repo.PhoneRepo;
-import com.fheebiy.repo.impl.PhoneRepoImpl;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,12 +19,6 @@ import java.util.List;
 @Controller
 @RequestMapping("/phone")
 public class PhoneController {
-
-   /* @Autowired
-    PhoneService phoneService;*/
-
-    /*@Autowired
-    PhoneRepoImpl phoneRepo;*/
 
     @Autowired
     PhoneRepo phoneRepo;
@@ -43,7 +37,9 @@ public class PhoneController {
 
     @RequestMapping("/save")
     public String savePhone(Phone phone) {
-       // phoneRepo.save(phone);
+        long phone_id = MongoUtil.nextId(MongoUtil.COLL_PHONE);
+        phone.setPhone_id(phone_id);
+        phoneRepo.save(phone);
         return "success";
     }
 
@@ -74,10 +70,4 @@ public class PhoneController {
         model.addAttribute("list", list);
         return "phone/list";
     }
-/*
-    @RequestMapping("/update")
-    public String updatePhone(Phone phone) {
-        phoneService.update(phone);
-        return "success";
-    }*/
 }
