@@ -18,10 +18,10 @@ public class LoginValidateInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         User user = (User) httpServletRequest.getSession().getAttribute("user");
-        if(user == null){
-           // httpServletRequest.getRequestDispatcher("../respage/login.html").forward(httpServletRequest, httpServletResponse);
+        String init_url = httpServletRequest.getRequestURL().toString();
+        if (user == null && !init_url.contains("login.htm")) {
             String url = getRequestURL(httpServletRequest);
-            httpServletResponse.sendRedirect("/respage/login.html?redirectURL="+url);
+            httpServletResponse.sendRedirect("/respage/login.html?redirectURL=" + url);
             return false;
         }
         return true;
@@ -35,26 +35,28 @@ public class LoginValidateInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
-
+        if (e != null) {
+            httpServletResponse.sendRedirect("/respage/error.html");
+        }
     }
 
     private String getRequestURL(HttpServletRequest httpServletRequest) {
-        Map map =httpServletRequest.getParameterMap();
+        Map map = httpServletRequest.getParameterMap();
         Set<String> keySet = map.keySet();
         StringBuffer stringBuffer = new StringBuffer();
-        if(keySet.size()> 0){
+        if (keySet.size() > 0) {
             boolean isFirst = true;
-            for(String key : keySet){
-                String[] array = (String[])map.get(key);
-                if(isFirst){
-                    stringBuffer.append("?"+key+"="+array[0]);
+            for (String key : keySet) {
+                String[] array = (String[]) map.get(key);
+                if (isFirst) {
+                    stringBuffer.append("?" + key + "=" + array[0]);
                     isFirst = false;
-                }else{
-                    stringBuffer.append("&"+key+"="+array[0]);
+                } else {
+                    stringBuffer.append("&" + key + "=" + array[0]);
                 }
             }
         }
-        return httpServletRequest.getRequestURL().toString()+stringBuffer.toString();
+        return httpServletRequest.getRequestURL().toString() + stringBuffer.toString();
     }
 
 }
