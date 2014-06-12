@@ -1,5 +1,8 @@
 package com.fheebiy.test;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.testng.annotations.Test;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
@@ -7,8 +10,16 @@ import java.util.*;
 /**
  * Created by bob zhou on 14-5-4.
  */
-public class Test {
+public class MyTest {
 
+    @Value("#{settings['kestrel.server.host']}")
+    static String server;
+
+    @Value("${kestrel.connectionPoolSize}")
+    static int poolSize;
+
+    @Value("${kestrel.ConnectTimeout}")
+    static int timeout;
 
     public void giveSomething() {
         System.out.println("zhouwenbo");
@@ -32,10 +43,10 @@ public class Test {
 
     }
 
-    @org.junit.Test
+    @Test
     public void operString() {
-       double[] array = {12,13,18,11,22,19};
-       System.out.println(getScore(array));
+        double[] array = {12, 13, 18, 11, 22, 19};
+        System.out.println(getScore(array));
     }
 
 
@@ -50,8 +61,13 @@ public class Test {
     }
 
 
-    public  void main(String[] args) {
+    @Test
+    public void valueTest() {
+        System.out.print(server);
 
+    }
+
+    public void main(String[] args) {
         try {
             System.out.println("please input heght:");
             Scanner s = new Scanner(System.in);
@@ -81,38 +97,38 @@ public class Test {
         double max = array[0];
         double min = array[0];
         double sum = 0;
-        for(int i = 0; i< array.length; i++){
-           if(array[i]>max){
-               max = array[i];
-           }
-           if(array[i] < min){
-               min = array[i];
-           }
-           sum+=array[i];
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] > max) {
+                max = array[i];
+            }
+            if (array[i] < min) {
+                min = array[i];
+            }
+            sum += array[i];
         }
         System.out.println("max = " + max);
         System.out.println("min = " + min);
-        double score = (sum-max-min)/(array.length-2);
+        double score = (sum - max - min) / (array.length - 2);
         return score;
     }
 
     @org.junit.Test
-    public void timeTest(){
+    public void timeTest() {
         List list = new LinkedList<Integer>();
-        for(int i = 0; i< 800000; i++){
-               list.add(i);
+        for (int i = 0; i < 800000; i++) {
+            list.add(i);
         }
 
         Iterator<Integer> iterator = list.iterator();
         long t1 = System.currentTimeMillis();
-        while (iterator.hasNext()){
-            if(iterator.next() %2 == 0){
+        while (iterator.hasNext()) {
+            if (iterator.next() % 2 == 0) {
                 iterator.remove();
             }
         }
 
-      long t2 = System.currentTimeMillis();
-      System.out.println(t2-t1);
+        long t2 = System.currentTimeMillis();
+        System.out.println(t2 - t1);
     }
 
 }

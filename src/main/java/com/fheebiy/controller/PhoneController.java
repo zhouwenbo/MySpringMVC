@@ -1,10 +1,12 @@
 package com.fheebiy.controller;
 
+import com.fheebiy.common.KestrelUtil;
 import com.fheebiy.common.MongoUtil;
 import com.fheebiy.domain.Phone;
 import com.fheebiy.repo.PhoneRepo;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +24,9 @@ public class PhoneController {
 
     @Autowired
     PhoneRepo phoneRepo;
+
+    @Value("${kestrel.server.host}")
+    static String server;
 
     @RequestMapping(value = "/find/{pid}")
     public String editPhone(Model model, @PathVariable("pid") long phone_id) {
@@ -65,7 +70,7 @@ public class PhoneController {
         if (StringUtils.isNotEmpty(priceStr)) {
             price = Double.parseDouble(priceStr);
         }
-
+        String s = KestrelUtil.receive("qname");
         List<Phone> list = phoneRepo.getPhoneList(name,phone_id,price);
         model.addAttribute("list", list);
         return "phone/list";
