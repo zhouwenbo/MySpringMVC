@@ -1,9 +1,9 @@
 package com.fheebiy.exception;
 
 /**
- * 系统业务异常
- * @author luocanfeng
- * @date 2011-6-30 10:20:46
+ *
+ * 暂未使用
+ * Created by bob zhou on 14-6-13.
  */
 public class BusinessException extends RuntimeException {
 
