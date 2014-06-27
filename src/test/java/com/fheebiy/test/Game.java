@@ -70,7 +70,6 @@ public class Game {
                     return result[1];
             }
         }
-
         return result[3];
     }
 
