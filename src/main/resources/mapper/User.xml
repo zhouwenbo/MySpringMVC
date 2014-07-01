@@ -3,7 +3,6 @@
         PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
         "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
-<mapper namespace="com.fheebiy.dao.UserDao">
-    <!-- 新增广告信息 -->
+<mapper namespace="com.fheebiy.repo.UserDao">
 
 </mapper>

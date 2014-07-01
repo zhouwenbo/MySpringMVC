@@ -35,5 +35,14 @@
         </tr>
     </table>
     </div>
+    <div style="width: 100%;height: 100px"></div>
+    <div style="width: 100%;height: 300px;">
+        <table>
+            <tr>
+                <td><a href="company/viewlist.htm">company list</a></td>
+                <td>公司列表</td>
+            </tr>
+        </table>
+    </div>
   </body>
 </html>

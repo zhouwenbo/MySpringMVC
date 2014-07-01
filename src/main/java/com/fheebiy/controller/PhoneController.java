@@ -1,5 +1,6 @@
 package com.fheebiy.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.fheebiy.common.KestrelUtil;
 import com.fheebiy.common.MongoUtil;
 import com.fheebiy.domain.Phone;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -54,8 +56,16 @@ public class PhoneController {
     }
 
 
-    @RequestMapping("/list")
-    public String list(HttpServletRequest request, Model model) {
+    @RequestMapping("/viewlist")
+    public String list() {
+        return "admin/company/list";
+    }
+
+    //我的再次提交测试
+
+    @RequestMapping(value = "list")
+    @ResponseBody
+    public String getList(HttpServletRequest request){
         String name = request.getParameter("name");
         String phone_idStr = request.getParameter("phone_id");
         String priceStr = request.getParameter("price");
@@ -70,11 +80,7 @@ public class PhoneController {
         if (StringUtils.isNotEmpty(priceStr)) {
             price = Double.parseDouble(priceStr);
         }
-        String s = KestrelUtil.receive("qname");
         List<Phone> list = phoneRepo.getPhoneList(name,phone_id,price);
-        model.addAttribute("list", list);
-        return "phone/list";
+        return JSON.toJSONString(list);
     }
-
-    //我的再次提交测试
 }

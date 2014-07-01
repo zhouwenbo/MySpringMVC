@@ -1,4 +1,4 @@
-package com.fheebiy.dao;
+package com.fheebiy.repo;
 
 import com.fheebiy.domain.Hero;
 import org.apache.ibatis.annotations.Param;

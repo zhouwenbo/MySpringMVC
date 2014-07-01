@@ -1,6 +1,6 @@
 package com.fheebiy.service;
 
-import com.fheebiy.dao.UserDao;
+import com.fheebiy.repo.UserDao;
 import com.fheebiy.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

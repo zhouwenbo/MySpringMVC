@@ -40,7 +40,7 @@
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sessionFactory"/>
-        <property name="basePackage" value="com.fheebiy.dao"/>
+        <property name="basePackage" value="com.fheebiy.repo"/>
         <property name="annotationClass" value="org.springframework.stereotype.Repository"/>
     </bean>
 
