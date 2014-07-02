@@ -1,8 +1,11 @@
 package com.fheebiy.controller.admin;
 
 import com.alibaba.fastjson.JSON;
+import com.fheebiy.common.web.PageContextUtil;
 import com.fheebiy.domain.Company;
 import com.fheebiy.repo.CompanyRepo;
+import com.fheebiy.rest.JsonResponse;
+import com.fheebiy.rest.JsonResponseCreator;
 import com.mongodb.util.Hash;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +38,7 @@ public class CompanyController {
     public Object list(HttpServletRequest request) {
         String name = request.getParameter("name");
         String address = request.getParameter("address");
-        int pno = 1;
+      /*  int pno = 1;
         int psize = 10;
         String pnoStr = request.getParameter("pno");
         String psizeStr = request.getParameter("psize");
@@ -44,16 +47,37 @@ public class CompanyController {
         }
         if(StringUtils.isNotEmpty(psizeStr)){
             psize = Integer.parseInt(psizeStr);
-        }
+        }*/
+
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("name", name);
         map.put("address", address);
-        map.put("pst",(pno-1)*psize);
-        map.put("psize",psize);
+      /*  map.put("pst",(pno-1)*psize);
+        map.put("psize",psize);*/
+        PageContextUtil.initPageContext(request);
         List<Company> list = repo.getList(map);
-        System.out.println("time="+list.get(0).getCreate_time());
-        String s =  JSON.toJSONString(list);
-        System.out.println(s);
-        return list;
+        return JsonResponseCreator.createJsonPage(list);
     }
+
+    @RequestMapping(value = "save")
+    @ResponseBody
+    public Object saveOrUpdate(Company company){
+        long id = company.getId();
+        Company comp = repo.getById(id);
+        if(comp == null){
+            repo.save(company);
+        }else {
+            repo.update(company);
+        }
+
+        return new JsonResponse();
+    }
+
+    @RequestMapping(value = "delete")
+    @ResponseBody
+    public Object delete(long id){
+        repo.delete(id);
+        return new JsonResponse();
+    }
+
 }

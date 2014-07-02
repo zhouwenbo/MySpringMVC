@@ -6,7 +6,7 @@
 <mapper namespace="com.fheebiy.repo.CompanyRepo">
 
     <select id="getList" parameterType="map" resultType="com.fheebiy.domain.Company">
-      select * from company
+        select * from company
         <where>
             <if test="name != null and name!='' ">
                 and name like concat('%', #{name}, '%')
@@ -15,6 +15,16 @@
                 and address like concat('%', #{address}, '%')
             </if>
         </where>
-        limit #{pst},#{psize}
     </select>
+
+    <insert id="save" parameterType="com.fheebiy.domain.Company">
+        insert into company (name, contact,phone,loginName,password,address,remark)
+        values (#{name},#{contact},#{phone},#{loginName},#{password},#{address},#{remark})
+    </insert>
+
+    <update id="update"  parameterType="com.fheebiy.domain.Company">
+        update company set name = #{name},contact=#{contact},phone=#{phone},loginName=#{loginName},password=#{password},address=#{address},remark=#{remark}
+        where id = #{id}
+    </update>
+
 </mapper>
