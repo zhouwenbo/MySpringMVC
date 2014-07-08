@@ -21,7 +21,7 @@ public class CarDto {
 
     private String carNum;
 
-    private String carType;
+    private int carType;
 
     private String carBrand;
 
@@ -63,11 +63,11 @@ public class CarDto {
         this.carNum = carNum;
     }
 
-    public String getCarType() {
+    public int getCarType() {
         return carType;
     }
 
-    public void setCarType(String carType) {
+    public void setCarType(int carType) {
         this.carType = carType;
     }
 

@@ -15,7 +15,7 @@
 
 <p>Click the buttons on datagrid toolbar to do crud actions.</p>
 
-<table id="dg" title="Company Info" class="easyui-datagrid" style="width:900px;height:250px"
+<table id="dg" title="Car Info" class="easyui-datagrid" style="width:900px;height:250px"
        url="/admin/car/list.htm"
        toolbar="#toolbar" pagination="true"
        rownumbers="true" fitColumns="true" singleSelect="true">
@@ -24,7 +24,7 @@
         <th field="id" width="30">id</th>
         <th field="carNum" width="80">carNum</th>
         <th field="companyName" width="80" formatter="fmtCom">company</th>
-        <th field="carType" width="50">carType</th>
+        <th field="carType" width="50" formatter="fmtCarType">carType</th>
         <th field="carBrand" width="70">carBrand</th>
         <th field="tonnage" width="80">tonnage</th>
         <th field="remark" width="80">Remark</th>
@@ -59,7 +59,13 @@
         </div>
         <div class="fitem">
             <label>车型:</label>
-            <input name="carType" class="easyui-validatebox" />
+            <select class="easyui-combobox" name="carType" style="width: 130px;">
+                <option value="5">普通货车</option>
+                <option value="6">集卡车</option>
+                <option value="7">私家车</option>
+                <option value="8">大客车</option>
+                <option value="9">其他</option>
+            </select>
         </div>
         <div class="fitem">
             <label>品牌:</label>
@@ -104,14 +110,16 @@
             success: function (data) {
                var json = $.parseJSON(data);
                 if (json.head.status==200) {
-                    $.messager.alert('company', '保存成功!', 'info',	function () {
+                    $.messager.alert('car', '保存成功!', 'info',	function () {
                         $('#dlg').dialog('close');
                         $("#dg").datagrid('reload');
                     });
                 }else if(json.head.status==201){
-                    $.messager.alert('company', '对不起，输入的车牌号已经存在，请重新输入', 'info');
+                    $.messager.alert('car', '对不起，输入的车牌号已经存在，请重新输入', 'info');
+                } else if(json.head.status==202){
+                    $.messager.alert('car', '对不起，你输入的公司不存在，请重新输入', 'info');
                 } else {
-                    $.messager.alert('company', '对不起，保存失败!', 'info');
+                    $.messager.alert('car', '对不起，保存失败!', 'info');
                     $('#dlg').dialog('close');        // close the dialog
                 }
             }
@@ -122,12 +130,12 @@
         if (row) {
             $.messager.confirm('Confirm', '你确定要删除吗?', function (r) {
                 if (r) {
-                    $.post('admin/company/delete.htm', {id: row.id}, function (result) {
+                    $.post('delete.htm', {id: row.id}, function (result) {
                         if (result.head.status==200) {
-                            $.messager.alert('company', '删除成功', 'info');
+                            $.messager.alert('car', '删除成功', 'info');
                             $('#dg').datagrid('reload');
                         } else {
-                            $.messager.alert('company', '对不起，删除失败!', 'info');
+                            $.messager.alert('car', '对不起，删除失败!', 'info');
                         }
                     }, 'json');
                 }
@@ -143,6 +151,22 @@
         return '<a href="/company/detail.htm?id='+row.id+'">'+val+'</a>'
     }
 
+    function fmtCarType(val,row){
+        switch (val){
+            case 5:
+                return '普通货车'
+            case 6:
+                return '集卡车'
+            case 7:
+                return '私家车'
+            case 8:
+                return '大客车'
+            case 9:
+                return '其他'
+            default :
+                return '其他'
+        }
+    }
     var myloader = function(param,success,error){
         var q = param.q || '';
         if (q.length <= 1){return false}

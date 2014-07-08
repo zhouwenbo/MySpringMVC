@@ -3,8 +3,10 @@ package com.fheebiy.controller.admin;
 import com.fheebiy.common.web.HttpParameterUtil;
 import com.fheebiy.common.web.PageContextUtil;
 import com.fheebiy.domain.Car;
+import com.fheebiy.domain.Company;
 import com.fheebiy.dto.CarDto;
 import com.fheebiy.repo.CarRepo;
+import com.fheebiy.repo.CompanyRepo;
 import com.fheebiy.rest.JsonResponse;
 import com.fheebiy.rest.JsonResponseCreator;
 import com.fheebiy.service.CarService;
@@ -30,6 +32,9 @@ public class CarController {
     @Autowired
     private CarRepo repo;
 
+    @Autowired
+    private CompanyRepo companyRepo;
+
     @RequestMapping("list")
     @ResponseBody
     public Object getList(HttpServletRequest request) {
@@ -53,7 +58,7 @@ public class CarController {
         String deviceIdStr = request.getParameter("device_id");
         String tonnageStr = request.getParameter("tonnage");
         String carNum = request.getParameter("carNum");
-        String carType = request.getParameter("carType");
+        int carType = Integer.parseInt(request.getParameter("carType"));
         String carBrand = request.getParameter("carBrand");
         String remark = request.getParameter("remark");
         Car car = new Car();
@@ -70,6 +75,10 @@ public class CarController {
             car.setTonnage(tonnage);
         }
         long company_id = HttpParameterUtil.getParameterLong(request, "company_id");
+        Company com = companyRepo.getById(company_id);
+        if(com == null){
+            return new JsonResponse(202);
+        }
         car.setCompany_id(company_id);
         car.setCarNum(carNum);
         car.setCarType(carType);
@@ -78,15 +87,19 @@ public class CarController {
 
         long id = car.getId();
         Car carr = repo.getById(id);
+        Car carl = repo.getCarByCarNum(car.getCarNum());
         if (carr == null) {
-            Car carl = repo.getCarByCarNum(car.getCarNum());
             if (carl == null) {
                 repo.save(car);
             } else {
                 return new JsonResponse(201);
             }
         } else {
-            repo.update(car);
+            if (carl != null && car.getId() != carl.getId() && car.getCarNum().equals(carl.getCarNum())) {
+                return new JsonResponse(201);
+            } else {
+                repo.update(car);
+            }
         }
         return new JsonResponse();
     }

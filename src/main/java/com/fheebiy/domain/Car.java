@@ -15,7 +15,7 @@ public class Car {
 
     private String carNum;
 
-    private String carType;
+    private int carType;        //车辆类型，5：普通货车，6：集卡车，7：私家车，8：大客车，9：其他
 
     private String carBrand;
 
@@ -57,11 +57,11 @@ public class Car {
         this.carNum = carNum;
     }
 
-    public String getCarType() {
+    public int getCarType() {
         return carType;
     }
 
-    public void setCarType(String carType) {
+    public void setCarType(int carType) {
         this.carType = carType;
     }
 
