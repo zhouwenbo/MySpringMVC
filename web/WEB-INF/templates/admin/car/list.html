@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>车辆管理</title>
+    <link rel="stylesheet" type="text/css" href="/css/easyui.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/icon.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/demo.css"/>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="/js/public.js"></script>
+
+</head>
+<body>
+<h2>Basic CRUD Application</h2>
+
+<p>Click the buttons on datagrid toolbar to do crud actions.</p>
+
+<table id="dg" title="Company Info" class="easyui-datagrid" style="width:900px;height:250px"
+       url="/admin/car/list.htm"
+       toolbar="#toolbar" pagination="true"
+       rownumbers="true" fitColumns="true" singleSelect="true">
+    <thead>
+    <tr>
+        <th field="id" width="30">id</th>
+        <th field="carNum" width="80">carNum</th>
+        <th field="companyName" width="80" formatter="fmtCom">company</th>
+        <th field="carType" width="50">carType</th>
+        <th field="carBrand" width="70">carBrand</th>
+        <th field="tonnage" width="80">tonnage</th>
+        <th field="remark" width="80">Remark</th>
+        <th field="create_time" width="70" formatter="fmtDate">Create_time</th>
+    </tr>
+    </thead>
+</table>
+<div id="toolbar">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newCar()">New
+        car</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editCar()">Edit
+        car</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true"
+       onclick="destroyCar()">Remove car</a>
+</div>
+
+<div id="dlg" class="easyui-dialog" style="width:400px;height:400px;padding:10px 20px"
+     closed="true" buttons="#dlg-buttons">
+    <div class="ftitle">Car Information</div>
+    <form id="fm" method="post" novalidate="novalidate">
+        <div class="fitem">
+            <label>车牌号:</label>
+            <input name="carNum" id="carNum" class="easyui-validatebox" data-options="required:true,missingMessage:'请填写车牌号'"/>
+        </div>
+        <div class="fitem">
+            <label>所属公司:</label>
+            <input name="company_id" id="com_comb" class="easyui-combobox" data-options="required:true,missingMessage:'请填写公司'"/>
+        </div>
+        <div class="fitem">
+            <label>gps设备号:</label>
+            <input name="device_id" id="device_id" class="easyui-numberbox"/>
+        </div>
+        <div class="fitem">
+            <label>车型:</label>
+            <input name="carType" class="easyui-validatebox" />
+        </div>
+        <div class="fitem">
+            <label>品牌:</label>
+            <input name="carBrand" class="easyui-validatebox"/>
+        </div>
+        <div class="fitem">
+            <label>吨位:</label>
+            <input  name="tonnage" id="tonnage"  class="easyui-numberbox"/>
+        </div>
+        <div class="fitem">
+            <label>备注:</label>
+            <input name="remark" type="text"/>
+        </div>
+    </form>
+</div>
+<div id="dlg-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveCar()">Save</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel"
+       onclick="javascript:$('#dlg').dialog('close')">Cancel</a>
+</div>
+<script type="text/javascript">
+    var url;
+    function newCar() {
+        $('#dlg').dialog('open').dialog('setTitle', '添加车辆');
+        $('#fm').form('clear');
+        url = '/admin/car/save.htm';
+    }
+    function editCar() {
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+            $('#dlg').dialog('open').dialog('setTitle', '编辑车辆');
+            $('#fm').form('load', row);
+            url = '/admin/car/save.htm?id='+row.id;
+        }
+    }
+    function saveCar() {
+        $('#fm').form('submit', {
+            url: url,
+            onSubmit: function () {
+                return $(this).form('validate');
+            },
+            success: function (data) {
+               var json = $.parseJSON(data);
+                if (json.head.status==200) {
+                    $.messager.alert('company', '保存成功!', 'info',	function () {
+                        $('#dlg').dialog('close');
+                        $("#dg").datagrid('reload');
+                    });
+                }else if(json.head.status==201){
+                    $.messager.alert('company', '对不起，输入的车牌号已经存在，请重新输入', 'info');
+                } else {
+                    $.messager.alert('company', '对不起，保存失败!', 'info');
+                    $('#dlg').dialog('close');        // close the dialog
+                }
+            }
+        });
+    }
+    function destroyCar() {
+        var row = $('#dg').datagrid('getSelected');
+        if (row) {
+            $.messager.confirm('Confirm', '你确定要删除吗?', function (r) {
+                if (r) {
+                    $.post('admin/company/delete.htm', {id: row.id}, function (result) {
+                        if (result.head.status==200) {
+                            $.messager.alert('company', '删除成功', 'info');
+                            $('#dg').datagrid('reload');
+                        } else {
+                            $.messager.alert('company', '对不起，删除失败!', 'info');
+                        }
+                    }, 'json');
+                }
+            });
+        }
+    }
+
+    function fmtDate(val,row){
+        return formatDateTime(val, "yyyy-MM-dd")
+    }
+
+    function fmtCom(val,row){
+        return '<a href="/company/detail.htm?id='+row.id+'">'+val+'</a>'
+    }
+
+    var myloader = function(param,success,error){
+        var q = param.q || '';
+        if (q.length <= 1){return false}
+        $.ajax({
+            url: '/admin/company/list.htm?name='+q,
+            dataType: 'json',
+            data: {
+                featureClass: "P",
+                style: "full",
+                maxRows: 20,
+                name_startsWith: q
+            },
+            success: function(data){
+                console.info(data.rows)
+                var items = $.map(data.rows, function(item){
+                    return {
+                        id: item.id,
+                        name: item.name
+                    };
+                });
+                success(items);
+            },
+            error: function(){
+                error.apply(this, arguments);
+            }
+        });
+    }
+
+    $('#com_comb').combobox({
+        loader: myloader,
+        valueField:'id',
+        textField:'name',
+      /*  panelHeight:'auto',*/ //自适应高度
+        mode: 'remote'
+    })
+</script>
+<style type="text/css">
+    #fm {
+        margin: 0;
+        padding: 10px 30px;
+    }
+
+    .ftitle {
+        font-size: 14px;
+        font-weight: bold;
+        padding: 5px 0;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .fitem {
+        margin-bottom: 5px;
+    }
+
+    .fitem label {
+        display: inline-block;
+        width: 80px;
+    }
+</style>
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.fheebiy.test;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.testng.annotations.Test;
 
@@ -63,7 +64,9 @@ public class MyTest {
 
     @Test
     public void valueTest() {
-        System.out.print(server);
+       String s = "eee";
+       boolean is = StringUtils.isNumeric(s);
+       System.out.print(is);
 
     }
 

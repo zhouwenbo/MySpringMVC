@@ -1,15 +1,19 @@
-package com.fheebiy.domain;
+package com.fheebiy.dto;
+
+import com.fheebiy.domain.Device;
 
 import java.util.Date;
 
 /**
- * Created by bob zhou on 14-6-30.
+ * Created by bob zhou on 14-7-8.
  */
-public class Device {
+public class DeviceDto {
 
     private long id;
 
     private long company_id;
+
+    private String companyName;   //扩充字段，公司名称
 
     private String deviceNo;
 
@@ -21,11 +25,14 @@ public class Device {
 
     private long car_id;
 
+    private String carNum;      //扩充字段，车牌号码
+
     private Date deliveryTime;
 
     private Date expireTime;
 
     private Date create_time;
+
 
     public long getId() {
         return id;
@@ -41,6 +48,14 @@ public class Device {
 
     public void setCompany_id(long company_id) {
         this.company_id = company_id;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
     public String getDeviceNo() {
@@ -83,6 +98,14 @@ public class Device {
         this.car_id = car_id;
     }
 
+    public String getCarNum() {
+        return carNum;
+    }
+
+    public void setCarNum(String carNum) {
+        this.carNum = carNum;
+    }
+
     public Date getDeliveryTime() {
         return deliveryTime;
     }
@@ -105,5 +128,22 @@ public class Device {
 
     public void setCreate_time(Date create_time) {
         this.create_time = create_time;
+    }
+
+    public static DeviceDto getDto(Device device,String companyName, String carNum){
+        DeviceDto dto = new DeviceDto();
+        dto.setId(device.getId());
+        dto.setCompany_id(device.getCompany_id());
+        dto.setCompanyName(companyName);
+        dto.setDeviceNo(device.getDeviceNo());
+        dto.setSim_id(device.getSim_id());
+        dto.setDeviceModel(device.getDeviceModel());
+        dto.setStatus(device.getStatus());
+        dto.setCar_id(device.getCar_id());
+        dto.setCarNum(carNum);
+        dto.setDeliveryTime(device.getDeliveryTime());
+        dto.setExpireTime(device.getExpireTime());
+        dto.setCreate_time(device.getCreate_time());
+        return dto;
     }
 }

@@ -1,17 +1,23 @@
-package com.fheebiy.domain;
+package com.fheebiy.dto;
+
+import com.fheebiy.domain.Car;
 
 import java.util.Date;
 
 /**
- * Created by bob zhou on 14-6-30.
+ * Created by bob zhou on 14-7-3.
  */
-public class Car {
+public class CarDto {
 
     private long id;
 
     private long company_id;
 
+    private String companyName;
+
     private long device_id;
+
+    private String deviceNo;
 
     private String carNum;
 
@@ -95,5 +101,21 @@ public class Car {
 
     public void setCreate_time(Date create_time) {
         this.create_time = create_time;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
+    }
+
+    public String getDeviceNo() {
+        return deviceNo;
+    }
+
+    public void setDeviceNo(String deviceNo) {
+        this.deviceNo = deviceNo;
     }
 }

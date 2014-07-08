@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.fheebiy.repo.DeviceRepo">
+
+    <select id="getList" parameterType="map" resultType="com.fheebiy.domain.Device">
+        select * from device
+        <where>
+            <if test="deviceNo != null and deviceNo!='' ">
+                and name like concat('%', #{deviceNo}, '%')
+            </if>
+            <if test="sim_id != null and sim_id != ''">
+                and sim_id like concat('%', #{sim_id}, '%')
+            </if>
+            <if test="ids != null and ids!='' ">
+                and company_id in(#{ids})
+            </if>
+            <if test="deviceModel != null">
+                and deviceModel = #{deviceModel}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+        </where>
+    </select>
+</mapper>

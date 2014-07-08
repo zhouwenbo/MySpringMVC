@@ -15,7 +15,7 @@
 <p>Click the buttons on datagrid toolbar to do crud actions.</p>
 
 <table id="dg" title="Company Info" class="easyui-datagrid" style="width:700px;height:250px"
-       url="/company/list.htm"
+       url="/admin/company/list.htm"
        toolbar="#toolbar" pagination="true"
        rownumbers="true" fitColumns="true" singleSelect="true">
     <thead>
@@ -88,14 +88,14 @@
     function newCompany() {
         $('#dlg').dialog('open').dialog('setTitle', '添加公司');
         $('#fm').form('clear');
-        url = '/company/save.htm';
+        url = '/admin/company/save.htm';
     }
     function editCompany() {
         var row = $('#dg').datagrid('getSelected');
         if (row) {
             $('#dlg').dialog('open').dialog('setTitle', '编辑公司');
             $('#fm').form('load', row);
-            url = '/company/save.htm?id='+row.id;
+            url = '/admin/company/save.htm?id='+row.id;
         }
     }
     function saveCompany() {
@@ -124,7 +124,7 @@
         if (row) {
             $.messager.confirm('Confirm', '你确定要删除吗?', function (r) {
                 if (r) {
-                    $.post('/company/delete.htm', {id: row.id}, function (result) {
+                    $.post('/admin/company/delete.htm', {id: row.id}, function (result) {
                         if (result.head.status==200) {
                             $.messager.alert('company', '删除成功', 'info');
                             $('#dg').datagrid('reload');

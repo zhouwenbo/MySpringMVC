@@ -39,8 +39,13 @@
     <div style="width: 100%;height: 300px;">
         <table>
             <tr>
-                <td><a href="company/viewlist.htm">company list</a></td>
+                <td><a href="admin/company/viewlist.htm">company list</a></td>
                 <td>公司列表</td>
+            </tr>
+
+            <tr>
+                <td><a href="admin/car/viewlist.htm">car list</a></td>
+                <td>车辆列表</td>
             </tr>
         </table>
     </div>

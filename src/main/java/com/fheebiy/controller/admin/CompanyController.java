@@ -22,7 +22,7 @@ import java.util.Map;
  * Created by bob zhou on 14-7-1.
  */
 @Controller
-@RequestMapping("company")
+@RequestMapping("admin/company")
 public class CompanyController {
 
     @Autowired
@@ -38,22 +38,9 @@ public class CompanyController {
     public Object list(HttpServletRequest request) {
         String name = request.getParameter("name");
         String address = request.getParameter("address");
-      /*  int pno = 1;
-        int psize = 10;
-        String pnoStr = request.getParameter("pno");
-        String psizeStr = request.getParameter("psize");
-        if(StringUtils.isNotEmpty(pnoStr)){
-            pno = Integer.parseInt(pnoStr);
-        }
-        if(StringUtils.isNotEmpty(psizeStr)){
-            psize = Integer.parseInt(psizeStr);
-        }*/
-
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("name", name);
         map.put("address", address);
-      /*  map.put("pst",(pno-1)*psize);
-        map.put("psize",psize);*/
         PageContextUtil.initPageContext(request);
         List<Company> list = repo.getList(map);
         return JsonResponseCreator.createJsonPage(list);
@@ -69,7 +56,6 @@ public class CompanyController {
         }else {
             repo.update(company);
         }
-
         return new JsonResponse();
     }
 
