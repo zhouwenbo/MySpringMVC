@@ -17,13 +17,13 @@
             <if test="ids != null and ids!='' ">
                 and company_id in(#{ids})
             </if>
-            <if test="deviceModel != null">
+            <if test="deviceModel != null and deviceModel != 0">
                 and deviceModel = #{deviceModel}
             </if>
-            <if test="status != null">
+            <if test="status != null and status != 0">
                 and status = #{status}
             </if>
-            <if test="id != null">
+            <if test="id != null and id != 0">
                 and id = #{id}
             </if>
         </where>

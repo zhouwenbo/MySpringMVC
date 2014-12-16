@@ -148,7 +148,12 @@
     }
 
     function fmtCom(val,row){
-        return '<a href="/company/detail.htm?id='+row.id+'">'+val+'</a>'
+        var company_id = row.company_id;
+        if(company_id == 0){
+            return '<span style="color: red;">'+val+'</span>';
+        }else{
+            return '<a href="/company/detail.htm?id='+company_id+'">'+val+'</a>';
+        }
     }
 
     function fmtCarType(val,row){
