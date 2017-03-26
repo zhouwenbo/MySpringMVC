@@ -2,7 +2,6 @@ package com.fheebiy.test;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
-import org.testng.annotations.Test;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -44,7 +43,6 @@ public class MyTest {
 
     }
 
-    @Test
     public void operString() {
         double[] array = {12, 13, 18, 11, 22, 19};
         System.out.println(getScore(array));
@@ -62,7 +60,6 @@ public class MyTest {
     }
 
 
-    @Test
     public void valueTest() {
        String s = "eee";
        boolean is = StringUtils.isNumeric(s);

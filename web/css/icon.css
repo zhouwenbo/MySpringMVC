@@ -7,6 +7,9 @@
 .icon-edit{
 	background:url('/images/icons/pencil.png') no-repeat center center;
 }
+.icon-clear{
+	background:url('/images/icons/clear.png') no-repeat center center;
+}
 .icon-remove{
 	background:url('/images/icons/edit_remove.png') no-repeat center center;
 }
@@ -54,6 +57,15 @@
 }
 .icon-filter{
 	background:url('/images/icons/filter.png') no-repeat center center;
+}
+.icon-man{
+	background:url('/images/icons/man.png') no-repeat center center;
+}
+.icon-lock{
+	background:url('/images/icons/lock.png') no-repeat center center;
+}
+.icon-more{
+	background:url('/images/icons/more.png') no-repeat center center;
 }
 
 
