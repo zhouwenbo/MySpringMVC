@@ -9,6 +9,13 @@ import java.util.GregorianCalendar;
 
 public class DateUtil {
 
+
+    public static final long ONE_SECOND = 1000l;
+
+    public static final long ONE_MINUTE = 60 * ONE_SECOND;
+
+    public static final long ONE_HOUR = 60 * ONE_MINUTE;
+
     public static Date parseDate(String dateStr) {
         try {
             String[] parsePatterns = {
@@ -63,15 +70,16 @@ public class DateUtil {
 
     /**
      * 0:00日期处理
+     *
      * @param endtime
      * @return
      */
     public static Date getDateMinusOneDay(Date endtime) {
-        if (endtime!=null && !endtime.equals("")){
+        if (endtime != null && !endtime.equals("")) {
             Calendar calendar = new GregorianCalendar();
             calendar.setTime(endtime);
-            calendar.add(calendar.DATE,1);
-            endtime=calendar.getTime();
+            calendar.add(calendar.DATE, 1);
+            endtime = calendar.getTime();
         }
         return endtime;
     }

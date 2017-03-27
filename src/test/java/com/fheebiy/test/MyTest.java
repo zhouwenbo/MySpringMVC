@@ -1,6 +1,7 @@
 package com.fheebiy.test;
 
 import org.apache.commons.lang.StringUtils;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.io.BufferedReader;

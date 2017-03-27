@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.fheebiy.repo.SmsCodeRepo">
+
+
+
+    <insert id="save" parameterType="com.fheebiy.domain.SmsCode">
+        insert into smscode (code, phoneNum, updateTime)
+        values (#{code},#{phoneNum},#{updateTime})
+    </insert>
+
+ <!--   <update id="update"  parameterType="com.fheebiy.domain.Company">
+        update company set name = #{name},contact=#{contact},phone=#{phone},loginName=#{loginName},password=#{password},address=#{address},remark=#{remark}
+        where id = #{id}
+    </update>
+-->
+
+  <!--  <select id="findByPhoneAndCode" parameterType="map" resultType="com.fheebiy.domain.SmsCode">
+        select * from smscode
+        <where>
+            <if test="phoneNum != null and phoneNum!='' ">
+                and name like concat('%', #{name}, '%')
+            </if>
+            <if test="address != null and address != ''">
+                and address like concat('%', #{address}, '%')
+            </if>
+        </where>
+    </select>-->
+
+</mapper>

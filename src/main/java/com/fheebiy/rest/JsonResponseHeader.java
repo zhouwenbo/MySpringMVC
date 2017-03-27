@@ -8,13 +8,16 @@ public class JsonResponseHeader {
     public static final int STATUS_SERVER_ERROR = 502;
     
     public static final int STATUS_BACKWARD_OK = 1;
-    
-    //登陆失败
-    public static final int STATUS_LOGIN_PASSWORD_ERROR = 403;
-    public static final int STATUS_LOGIN_ENDDATE_ERROR = 409;
 
-    //帐号停用
-    public static final int STATUS_LOGIN_STOP_ERROR = 410;
+
+
+    //登陆注册失败
+
+    public static final int STATUS_LOGIN_PASSWORD_ERROR = 403;   //密码错误
+    public static final int STATUS_LOGIN_ENDDATE_ERROR = 409;
+    public static final int STATUS_LOGIN_STOP_ERROR = 410;     //账号停用
+    public static final int STATUS_REGISTER_CODE_ERROR = 411; //验证码输入不正确
+    public static final int STATUS_REGISTER_CODE_DELAY = 412; //验证码超时
 
     public static final int STATUS_MALLID_ERROR = 600;
     //门店相关错误码
