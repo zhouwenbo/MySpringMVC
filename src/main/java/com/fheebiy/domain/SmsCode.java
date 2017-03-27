@@ -8,14 +8,27 @@ import java.util.Date;
  */
 public class SmsCode {
 
+    /**
+     * 默认
+     */
+    public static final int STATUS_DEFAULT = 0;
+
+    /**
+     * 已经用过
+     */
+    public static final int STATUS_USED = 1;
+
     private long code_id;
 
-    private int code;
+    private String code;
 
     private String phoneNum;
 
     private Date updateTime;
 
+    private Date createTime;
+
+    private int status;      //0：ok， 1：已用过
 
     public long getCode_id() {
         return code_id;
@@ -25,11 +38,11 @@ public class SmsCode {
         this.code_id = code_id;
     }
 
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
@@ -47,5 +60,21 @@ public class SmsCode {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

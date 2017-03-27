@@ -9,12 +9,12 @@ public class HttpSender {
 
 	public static final int MAX = 999999;
 
-	public static int sendSMS(String phone) {
-		int code = getRandNum(MIN, MAX);
+	public static String sendSMS(String phone) {
+		String code = String.valueOf(generateRandomArray(6));;
 		String url = "http://sms.253.com/msg/";// 应用地址
 		String un = "N4276342";// 账号
 		String pw = "N2Lk23g5Bic2";// 密码
-		String msg = "【253云通讯】您好，您的验证码是"+ getRandNum(MIN, MAX);// 短信内容
+		String msg = "【253云通讯】您好，您的验证码是"+ code;// 短信内容
 		String rd = "0";// 是否需要状态报告，需要1，不需要0
 		String ex = null;// 扩展码
 
@@ -47,11 +47,17 @@ public class HttpSender {
 			e.printStackTrace();
 		}
 		System.out.println("44444444444444444444444444");
-		return -1;
+		return "-1";
 	}
 
-	public static int getRandNum(int min, int max) {
-		return min + (int) (Math.random() * ((max - min) + 1));
+	public static char[] generateRandomArray(int num) {
+		String chars = "0123456789";
+		char[] rands = new char[num];
+		for (int i = 0; i < num; i++) {
+			int rand = (int) (Math.random() * 10);
+			rands[i] = chars.charAt(rand);
+		}
+		return rands;
 	}
 
 }

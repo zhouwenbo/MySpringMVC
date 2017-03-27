@@ -2,6 +2,7 @@ package com.fheebiy.controller;
 
 import com.fheebiy.common.DateUtil;
 import com.fheebiy.common.smsgcode.HttpSender;
+import com.fheebiy.domain.Phone;
 import com.fheebiy.domain.SmsCode;
 import com.fheebiy.domain.User;
 import com.fheebiy.repo.SmsCodeRepo;
@@ -39,7 +40,7 @@ public class UserController {
     private SmsCodeRepo smsCodeRepo;
 
     @RequestMapping("/find")
-    public String editUser(Model model,@RequestParam(required=true)Long user_id){
+    public String editUser(Model model, @RequestParam(required = true) Long user_id) {
         User user = userService.getUserById(user_id);
         model.addAttribute("user", user);
         return "user/detail";
@@ -47,17 +48,17 @@ public class UserController {
 
 
     @RequestMapping("/login")
-    public void doLogin(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestParam(required = true)String user_name, @RequestParam(required = true)String password,@RequestParam(required = false)String redirectURL) throws IOException {
+    public void doLogin(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestParam(required = true) String user_name, @RequestParam(required = true) String password, @RequestParam(required = false) String redirectURL) throws IOException {
         User user = userService.doLogin(user_name, password);
-        if(user == null){
-            if(!StringUtils.isEmpty(redirectURL)){
-                httpServletResponse.sendRedirect("/respage/login.html?redirectURL="+redirectURL);
+        if (user == null) {
+            if (!StringUtils.isEmpty(redirectURL)) {
+                httpServletResponse.sendRedirect("/respage/login.html?redirectURL=" + redirectURL);
             }
-        }else{
+        } else {
             httpServletRequest.getSession().setAttribute("user", user);
-            if(!StringUtils.isEmpty(redirectURL)){
+            if (!StringUtils.isEmpty(redirectURL)) {
                 httpServletResponse.sendRedirect(redirectURL);
-            }else{
+            } else {
                 httpServletResponse.sendRedirect("/index.jsp");
             }
         }
@@ -69,15 +70,26 @@ public class UserController {
         String phone = request.getParameter("phone");
         String st = request.getParameter("st");
         String code = request.getParameter("code");
+        String nickName = request.getParameter("nickName");
+        String pwd = request.getParameter("pwd");
+        if (StringUtils.isNotEmpty(phone) && phone.length() > 10) {
+            User user = userService.getUserByPhone(phone);
+            if (user != null) {
+                return new JsonResponse(JsonResponseHeader.STATUS_REGISTER_CODE_EXIST, null);
+            }
+        }
+
         if (ST_NONE_CODE.equals(st)) {
             if (!StringUtils.isEmpty(phone) && phone.length() > 10) {
-                int resultCode = HttpSender.sendSMS(phone);
+                String resultCode = HttpSender.sendSMS(phone);
                 System.out.print("___________resultCode-------------" + resultCode);
-                if (resultCode > 0) {
+                if (!"-1".equals(resultCode)) {
                     SmsCode smsCode = new SmsCode();
                     smsCode.setCode(resultCode);
                     smsCode.setPhoneNum(phone);
                     smsCode.setUpdateTime(new Date());
+                    smsCode.setCreateTime(new Date());
+                    smsCode.setStatus(0);
                     smsCodeRepo.save(smsCode);
                     System.out.println("save_____________gogogo!!");
                     return new JsonResponse();
@@ -87,9 +99,11 @@ public class UserController {
             if (StringUtils.isNotEmpty(phone) && StringUtils.isNotEmpty(code)) {
                 SmsCode smsCode = smsCodeRepo.findByPhoneAndCode(phone, code);
                 if (smsCode != null) {
-                    long updateTime = smsCode.getUpdateTime().getTime();
+                    long createTime = smsCode.getCreateTime().getTime();
                     System.out.println("smsCode------------------!!" + smsCode.getPhoneNum() + " ,smsCode = " + smsCode.getCode_id());
-                    if (System.currentTimeMillis() - updateTime < 10 * DateUtil.ONE_MINUTE) {
+                    if (System.currentTimeMillis() - createTime < 10 * DateUtil.ONE_MINUTE) {
+                        userService.saveUser(phone, pwd, nickName);
+                        smsCodeRepo.updateStatus(smsCode.getCode_id(), SmsCode.STATUS_USED);
                         return new JsonResponse();
                     } else {
                         return new JsonResponse(JsonResponseHeader.STATUS_REGISTER_CODE_DELAY, null);

@@ -8,8 +8,8 @@
 
 
     <insert id="save" parameterType="com.fheebiy.domain.SmsCode">
-        insert into smscode (code, phoneNum, updateTime)
-        values (#{code},#{phoneNum},#{updateTime})
+        insert into smscode (code, phoneNum, updateTime, createTime, status)
+        values (#{code},#{phoneNum},#{updateTime},#{createTime},#{status})
     </insert>
 
  <!--   <update id="update"  parameterType="com.fheebiy.domain.Company">

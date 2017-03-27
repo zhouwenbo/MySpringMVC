@@ -1,5 +1,7 @@
 package com.fheebiy.domain;
 
+import java.util.Date;
+
 /**
  * Created by zwb on 14-3-22.
  */
@@ -21,10 +23,10 @@ public class User {
     private String nickName;
 
     /**年龄*/
-    private int age;
+    private int age;     //默认0
 
     /**性别*/
-    private int sex;
+    private int sex;    //0:默认，男 1：女
 
     /**学校*/
     private String school;
@@ -32,6 +34,9 @@ public class User {
     /**头像图片地址*/
     private String avatar;
 
+    private Date createTime;
+
+    private Date updateTime;
 
     public long getUser_id() {
         return user_id;
@@ -103,5 +108,21 @@ public class User {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 }

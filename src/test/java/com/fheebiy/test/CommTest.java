@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Administrator on 14-7-7.
@@ -28,7 +29,6 @@ public class CommTest {
     @Test
     public void jsonTest() {
         List<Person> list = new ArrayList<Person>();
-
         Person person = new Person("沧海横流", 10, "男");
 
         for (int i = 0; i < 10; i++) {
@@ -44,7 +44,11 @@ public class CommTest {
 
     @Test
     public void codeTest() {
-        System.out.println("随机数为" + getRandNum(1, 999999));
+       // Random r = new Random();
+        for (int i = 0; i< 10 ; i++) {
+            System.out.println(String.valueOf(generateRandomArray(6)));
+        }
+        //System.out.println("随机数为" + imei);
     }
 
 
@@ -53,5 +57,16 @@ public class CommTest {
         return randNum;
     }
 
+
+
+    public static char[] generateRandomArray(int num) {
+        String chars = "0123456789";
+        char[] rands = new char[num];
+        for (int i = 0; i < num; i++) {
+            int rand = (int) (Math.random() * 10);
+            rands[i] = chars.charAt(rand);
+        }
+        return rands;
+    }
 
 }
