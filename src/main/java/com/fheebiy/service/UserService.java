@@ -26,8 +26,8 @@ public class UserService {
         return userRepo.getById(user_id);
     }
 
-    public User doLogin(String user_name, String password){
-        return  userRepo.doLogin(user_name, password);
+    public User doLogin(String phoneNum, String password){
+        return  userRepo.doLogin(phoneNum, password);
     }
 
     public void saveUser(String phone, String pwd, String nickName) {

@@ -13,7 +13,7 @@ public class JsonResponseHeader {
 
     //登陆注册失败
 
-    public static final int STATUS_LOGIN_PASSWORD_ERROR = 403;   //密码错误
+    public static final int STATUS_LOGIN_PASSWORD_ERROR = 403;   //账号或者密码错误
     public static final int STATUS_LOGIN_ENDDATE_ERROR = 409;
     public static final int STATUS_LOGIN_STOP_ERROR = 410;     //账号停用
     public static final int STATUS_REGISTER_CODE_ERROR = 411; //验证码输入不正确

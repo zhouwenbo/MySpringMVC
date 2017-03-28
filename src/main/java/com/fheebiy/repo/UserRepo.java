@@ -13,17 +13,17 @@ import java.util.List;
 @Repository
 public interface UserRepo {
 
-    @Select("select * from tb_user")
+    @Select("select * from user")
     List<User> getList();
 
-    @Select("select * from tb_user where user_id = #{user_id}")
+    @Select("select * from user where user_id = #{user_id}")
     User getById(@Param("user_id")long user_id);
 
     @Select("select * from user where phoneNum = #{0} limit 1")
     User getUserByPhoneNum(String phoneNum);
 
-    @Select("select * from tb_user where name= #{user_name} and password = #{password}")
-    User doLogin(@Param("user_name")String user_name, @Param("password")String password);
+    @Select("select * from user where phoneNum= #{phoneNum} and password = #{password}")
+    User doLogin(@Param("phoneNum")String phoneNum, @Param("password")String password);
 
     void save(User user);
 }

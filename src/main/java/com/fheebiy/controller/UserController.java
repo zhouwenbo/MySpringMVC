@@ -47,7 +47,7 @@ public class UserController {
     }
 
 
-    @RequestMapping("/login")
+   /* @RequestMapping("/login")
     public void doLogin(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, @RequestParam(required = true) String user_name, @RequestParam(required = true) String password, @RequestParam(required = false) String redirectURL) throws IOException {
         User user = userService.doLogin(user_name, password);
         if (user == null) {
@@ -55,12 +55,25 @@ public class UserController {
                 httpServletResponse.sendRedirect("/respage/login.html?redirectURL=" + redirectURL);
             }
         } else {
-            httpServletRequest.getSession().setAttribute("user", user);
+            httpServletRequsest.getSession().setAttribute("user", user);
             if (!StringUtils.isEmpty(redirectURL)) {
                 httpServletResponse.sendRedirect(redirectURL);
             } else {
                 httpServletResponse.sendRedirect("/index.jsp");
             }
+        }
+    }*/
+
+    @RequestMapping("/login")
+    @ResponseBody
+   public Object doLogin(HttpServletRequest request) {
+        String phone = request.getParameter("phone");
+        String pwd = request.getParameter("pwd");
+        User user = userService.doLogin(phone, pwd);
+        if (user != null) {
+            return new JsonResponse(user);
+        } else {
+            return new JsonResponse(JsonResponseHeader.STATUS_LOGIN_PASSWORD_ERROR, null);
         }
     }
 
