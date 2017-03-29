@@ -34,6 +34,23 @@ public class User {
     /**头像图片地址*/
     private String avatar;
 
+    /**地域*/
+    private String area;
+
+    /**积分*/
+    private long integral;
+
+    /**金币*/
+    private long gold;
+
+    /**额度*/
+    private long credit;
+
+    /**心情和种子在另外一张表，通过user_id关联*/
+
+    /**上次签到时间*/
+    private Date lastCheckTime;
+
     private Date createTime;
 
     private Date updateTime;
@@ -124,5 +141,45 @@ public class User {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public long getIntegral() {
+        return integral;
+    }
+
+    public void setIntegral(long integral) {
+        this.integral = integral;
+    }
+
+    public long getGold() {
+        return gold;
+    }
+
+    public void setGold(long gold) {
+        this.gold = gold;
+    }
+
+    public long getCredit() {
+        return credit;
+    }
+
+    public void setCredit(long credit) {
+        this.credit = credit;
+    }
+
+    public Date getLastCheckTime() {
+        return lastCheckTime;
+    }
+
+    public void setLastCheckTime(Date lastCheckTime) {
+        this.lastCheckTime = lastCheckTime;
     }
 }

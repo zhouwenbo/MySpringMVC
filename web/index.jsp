@@ -47,6 +47,10 @@
                 <td><a href="admin/car/viewlist.htm">car list</a></td>
                 <td>车辆列表</td>
             </tr>
+            <tr>
+                <td><a href="admin/gift/viewlist.htm">gift list</a></td>
+                <td>礼物列表</td>
+            </tr>
         </table>
     </div>
   </body>

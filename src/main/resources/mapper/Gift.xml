@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.fheebiy.repo.GiftRepo">
+
+    <select id="list" parameterType="map" resultType="com.fheebiy.domain.Gift">
+        select * from gift
+        <where>
+            <if test="name != null and name!='' ">
+                and name like concat('%', #{name}, '%')
+            </if>
+            <if test="address != null and address != ''">
+                and address like concat('%', #{address}, '%')
+            </if>
+        </where>
+        order by updateTime desc
+    </select>
+
+    <insert id="save" parameterType="com.fheebiy.domain.Gift">
+        insert into gift (name,description,price,level,ourl,pic1,pic2,pic3,status,createTime,updateTime)
+        values (#{name},#{description},#{price},#{level},#{ourl},#{pic1},#{pic2},#{pic3},#{status},#{createTime},#{updateTime})
+    </insert>
+
+    <update id="update"  parameterType="com.fheebiy.domain.Gift">
+        update gift set name=#{name},description=#{description},price=#{price},level=#{level},ourl=#{ourl},pic1=#{pic1},pic2=#{pic2},pic3=#{pic3},status=#{status}
+        where gift_id = #{gift_id}
+    </update>
+
+</mapper>
