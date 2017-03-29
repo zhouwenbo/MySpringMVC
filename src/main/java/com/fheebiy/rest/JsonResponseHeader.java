@@ -19,6 +19,7 @@ public class JsonResponseHeader {
     public static final int STATUS_REGISTER_CODE_ERROR = 411; //验证码输入不正确
     public static final int STATUS_REGISTER_CODE_DELAY = 412; //验证码超时
     public static final int STATUS_REGISTER_CODE_EXIST = 413; //用户手机号码已经存在
+    public static final int STATUS_REGISTER_CODE_SMS_ERROR = 414; //短信没有发送成功
 
     public static final int STATUS_MALLID_ERROR = 600;
     //门店相关错误码

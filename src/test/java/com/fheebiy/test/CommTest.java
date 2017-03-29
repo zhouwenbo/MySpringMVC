@@ -1,6 +1,7 @@
 package com.fheebiy.test;
 
 import com.alibaba.fastjson.JSONObject;
+import com.fheebiy.common.StrUtil;
 import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
@@ -16,8 +17,8 @@ public class CommTest {
 
     @Test
     public void valueTest() {
-      String s = "20170327205653,0\n" +
-              "17032720565322592";
+        String s = "20170327205653,0\n" +
+                "17032720565322592";
 
         String[] ss = s.split("\n");
 
@@ -44,19 +45,26 @@ public class CommTest {
 
     @Test
     public void codeTest() {
-       // Random r = new Random();
-        for (int i = 0; i< 10 ; i++) {
+        // Random r = new Random();
+        for (int i = 0; i < 10; i++) {
             System.out.println(String.valueOf(generateRandomArray(6)));
         }
         //System.out.println("随机数为" + imei);
     }
 
 
+    @Test
+    public void tokenTest() {
+        for (int i = 0; i < 10; i++) {
+            String s = StrUtil.getTokenByPwd("zhoenbo132");
+            System.out.println(s);
+        }
+    }
+
     public static int getRandNum(int min, int max) {
         int randNum = min + (int) (Math.random() * ((max - min) + 1));
         return randNum;
     }
-
 
 
     public static char[] generateRandomArray(int num) {

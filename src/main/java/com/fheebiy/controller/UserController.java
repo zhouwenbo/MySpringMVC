@@ -106,6 +106,8 @@ public class UserController {
                     smsCodeRepo.save(smsCode);
                     System.out.println("save_____________gogogo!!");
                     return new JsonResponse();
+                } else {
+                    return new JsonResponse(JsonResponseHeader.STATUS_REGISTER_CODE_SMS_ERROR, null);
                 }
             }
         } else if (ST_HAVE_CODE.equals(st)) {
@@ -117,7 +119,8 @@ public class UserController {
                     if (System.currentTimeMillis() - createTime < 10 * DateUtil.ONE_MINUTE) {
                         userService.saveUser(phone, pwd, nickName);
                         smsCodeRepo.updateStatus(smsCode.getCode_id(), SmsCode.STATUS_USED);
-                        return new JsonResponse();
+                        User user = userService.getUserByPhone(phone);
+                        return new JsonResponse(user);
                     } else {
                         return new JsonResponse(JsonResponseHeader.STATUS_REGISTER_CODE_DELAY, null);
                     }

@@ -1,5 +1,6 @@
 package com.fheebiy.service;
 
+import com.fheebiy.common.StrUtil;
 import com.fheebiy.repo.UserRepo;
 import com.fheebiy.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,16 +31,19 @@ public class UserService {
         return  userRepo.doLogin(phoneNum, password);
     }
 
-    public void saveUser(String phone, String pwd, String nickName) {
+    public User saveUser(String phone, String pwd, String nickName) {
         User user = new User();
         user.setPhoneNum(phone);
         user.setPassword(pwd);
+        user.setToken(StrUtil.getTokenByPwd(pwd));
         user.setNickName(nickName);
         user.setAge(0);
         user.setSex(0);
         user.setCreateTime(new Date());
         user.setUpdateTime(new Date());
         userRepo.save(user);
+
+        return user;
     }
 
     public User getUserByPhone(String phone) {

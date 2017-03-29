@@ -19,6 +19,9 @@ public class User {
     /**密码*/
     private String password;
 
+    /**token*/
+    private String token;
+
     /**昵称*/
     private String nickName;
 
@@ -85,6 +88,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public String getNickName() {
