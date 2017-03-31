@@ -7,6 +7,8 @@ import com.fheebiy.dto.CarDto;
 import com.fheebiy.repo.GiftRepo;
 import com.fheebiy.rest.JsonResponse;
 import com.fheebiy.rest.JsonResponseCreator;
+import com.fheebiy.service.GiftService;
+import com.fheebiy.service.KindChipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +30,9 @@ public class GiftController {
     @Autowired
     private GiftRepo giftRepo;
 
+    @Autowired
+    private GiftService giftService;
+
     @RequestMapping("list")
     @ResponseBody
     public Object getList(HttpServletRequest request) {
@@ -48,17 +53,7 @@ public class GiftController {
     @RequestMapping(value = "save")
     @ResponseBody
     public Object saveOrUpdate(Gift gift){
-        long id = gift.getGift_id();
-        Gift g = giftRepo.getById(id);
-        if(g == null){
-            gift.setCreateTime(new Date());
-            gift.setUpdateTime(new Date());
-            gift.setStatus(0);
-            giftRepo.save(gift);
-        }else {
-            gift.setUpdateTime(new Date());
-            giftRepo.update(gift);
-        }
+        giftService.saveOrUpdate(gift);
         return new JsonResponse();
     }
 

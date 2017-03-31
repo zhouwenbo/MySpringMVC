@@ -2,12 +2,12 @@ package com.fheebiy.controller;
 
 import com.fheebiy.common.DateUtil;
 import com.fheebiy.common.smsgcode.HttpSender;
-import com.fheebiy.domain.Phone;
 import com.fheebiy.domain.SmsCode;
 import com.fheebiy.domain.User;
 import com.fheebiy.repo.SmsCodeRepo;
 import com.fheebiy.rest.JsonResponse;
 import com.fheebiy.rest.JsonResponseHeader;
+import com.fheebiy.service.TreeService;
 import com.fheebiy.service.UserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -38,6 +36,9 @@ public class UserController {
 
     @Autowired
     private SmsCodeRepo smsCodeRepo;
+
+    @Autowired
+    private TreeService treeService;
 
     @RequestMapping("/find")
     public String editUser(Model model, @RequestParam(required = true) Long user_id) {
@@ -120,6 +121,7 @@ public class UserController {
                         userService.saveUser(phone, pwd, nickName);
                         smsCodeRepo.updateStatus(smsCode.getCode_id(), SmsCode.STATUS_USED);
                         User user = userService.getUserByPhone(phone);
+                        treeService.initSaveTwoTree(user.getUser_id());
                         return new JsonResponse(user);
                     } else {
                         return new JsonResponse(JsonResponseHeader.STATUS_REGISTER_CODE_DELAY, null);
@@ -131,5 +133,7 @@ public class UserController {
         }
         return new JsonResponse();
     }
+
+
 
 }

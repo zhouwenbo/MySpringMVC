@@ -7,11 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
+<head>
     <title>欢迎光临，我的首页</title>
-  </head>
-  <body>
-    <div style="margin: 0px auto;">
+</head>
+<body>
+<div style="margin: 0px auto;">
     <table>
         <tr>
             <td><a href="user/find.htm?user_id=1">显示学生</a></td>
@@ -34,24 +34,28 @@
             <td>带条件查询</td>
         </tr>
     </table>
-    </div>
-    <div style="width: 100%;height: 100px"></div>
-    <div style="width: 100%;height: 300px;">
-        <table>
-            <tr>
-                <td><a href="admin/company/viewlist.htm">company list</a></td>
-                <td>公司列表</td>
-            </tr>
+</div>
+<div style="width: 100%;height: 100px"></div>
+<div style="width: 100%;height: 300px;">
+    <table>
+        <tr>
+            <td><a href="admin/company/viewlist.htm" target="_blank">company list</a></td>
+            <td>公司列表</td>
+        </tr>
 
-            <tr>
-                <td><a href="admin/car/viewlist.htm">car list</a></td>
-                <td>车辆列表</td>
-            </tr>
-            <tr>
-                <td><a href="admin/gift/viewlist.htm">gift list</a></td>
-                <td>礼物列表</td>
-            </tr>
-        </table>
-    </div>
-  </body>
+        <tr>
+            <td><a href="admin/car/viewlist.htm" target="_blank">car list</a></td>
+            <td>车辆列表</td>
+        </tr>
+        <tr>
+            <td><a href="admin/gift/viewlist.htm" target="_blank">gift list</a></td>
+            <td>礼物列表</td>
+        </tr>
+        <tr>
+            <td><a href="admin/kindchip/viewlist.htm" target="_blank">chip list</a></td>
+            <td>碎片列表</td>
+        </tr>
+    </table>
+</div>
+</body>
 </html>

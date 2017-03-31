@@ -26,4 +26,7 @@ public interface GiftRepo {
      @Delete("delete from gift where gift_id = #{gift_id}")
      void delete(long gift_id);
 
+     @Select("select * from gift where name = #{0} order by createTime desc limit 1 ")
+     Gift getByName(String name);
+
 }

@@ -1,10 +1,22 @@
 package com.fheebiy.domain;
 
+import java.util.Date;
+
 /**
  * Created by cm on 2017/3/28.
  * 树
  */
 public class Tree {
+
+    /**礼物树*/
+    public static final int GIFT_TREE_TOTAL_NUM = 100;
+
+    /**愿望树*/
+    public static final int DESIRE_TREE_TOTAL_NUM = 100;
+
+    public static final int TYPE_GIFT = 1;
+
+    public static final int TYPE_DESIRE = 2;
 
     private long tree_id;
 
@@ -18,6 +30,8 @@ public class Tree {
 
     /**总共需要的成长值*/
     private long totalNum;
+
+    private Date createTime;
 
     public long getTree_id() {
         return tree_id;
@@ -57,6 +71,14 @@ public class Tree {
 
     public void setTotalNum(long totalNum) {
         this.totalNum = totalNum;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }
 

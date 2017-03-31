@@ -39,6 +39,9 @@ public class UserService {
         user.setNickName(nickName);
         user.setAge(0);
         user.setSex(0);
+        user.setIntegral(100);
+        user.setGold(0);
+        user.setCredit(8000);
         user.setCreateTime(new Date());
         user.setUpdateTime(new Date());
         userRepo.save(user);
