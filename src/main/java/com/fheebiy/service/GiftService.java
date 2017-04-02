@@ -2,11 +2,14 @@ package com.fheebiy.service;
 
 import com.fheebiy.common.LogUtil;
 import com.fheebiy.domain.Gift;
+import com.fheebiy.dto.GiftDto;
 import com.fheebiy.repo.GiftRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by cm on 2017/3/31.
@@ -45,6 +48,7 @@ public class GiftService {
             gift.setCreateTime(new Date());
             gift.setUpdateTime(new Date());
             gift.setStatus(0);
+            gift.initLevel();
             save(gift);
             Gift g2 = getGiftByName(gift.getName());
             if (g2 != null) {
@@ -55,9 +59,20 @@ public class GiftService {
             }
         } else {
             gift.setUpdateTime(new Date());
+            gift.initLevel();
             update(gift);
             kindChipService.updateByGift(gift);
         }
+    }
+
+    public List<GiftDto> getAList(int count, long last_id) {
+        List<Gift>  list = giftRepo.getAList(count, last_id);
+        List<GiftDto> dtoList = new ArrayList<GiftDto>();
+        for(Gift gift : list) {
+            GiftDto dto = GiftDto.fromGift(gift);
+            dtoList.add(dto);
+        }
+        return dtoList;
     }
 
 }

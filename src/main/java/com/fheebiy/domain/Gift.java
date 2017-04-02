@@ -8,22 +8,34 @@ import java.util.Date;
  */
 public class Gift {
 
-    /**主键 id*/
+    /**
+     * 主键 id
+     */
     private long gift_id;
 
-    /**名称*/
+    /**
+     * 名称
+     */
     private String name;
 
-    /**描述*/
+    /**
+     * 描述
+     */
     private String description;
 
-    /**价格*/
+    /**
+     * 价格
+     */
     private double price;
 
-    /**级别*/
+    /**
+     * 级别
+     */
     private int level;
 
-    /**链接地址*/
+    /**
+     * 链接地址
+     */
     private String ourl;
 
     private String pic1;
@@ -32,12 +44,22 @@ public class Gift {
 
     private String pic3;
 
-    /**状态：0默认，1：下架 2：删除*/
+    /**
+     * 状态：0默认，1：下架 2：删除
+     */
     private int status;
 
     private Date createTime;
 
     private Date updateTime;
+
+
+    public static final int[] level1 = {1, 50};
+    public static final int[] level2 = {50, 300};
+    public static final int[] level3 = {300, 500};
+    public static final int[] level4 = {500, 1000};
+    public static final int[] level5 = {1000, 2000};
+    public static final int[] level6 = {2000, 2000000};
 
     public long getGift_id() {
         return gift_id;
@@ -135,4 +157,31 @@ public class Gift {
     public void setPic3(String pic3) {
         this.pic3 = pic3;
     }
+
+    public void initLevel() {
+        this.level = getLevel(price);
+    }
+
+    public static int getLevel(double price) {
+        int level = 1;
+        if (levelIn(price, level1)) {
+            level = 1;
+        } else if (levelIn(price, level2)) {
+            level = 2;
+        } else if (levelIn(price, level3)) {
+            level = 3;
+        } else if (levelIn(price, level4)) {
+            level = 4;
+        } else if (levelIn(price, level5)) {
+            level = 5;
+        } else if (levelIn(price, level6)) {
+            level = 6;
+        }
+        return level;
+    }
+
+    public static boolean levelIn(double price, int[] array) {
+        return price >= array[0] && price < array[1];
+    }
+
 }

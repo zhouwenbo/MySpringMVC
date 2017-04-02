@@ -31,7 +31,7 @@ public class KindChipService {
 
     public void saveByGift(Gift gift) {
         int count = (int) gift.getPrice();
-        saveByGift(gift.getGift_id(), count, gift.getName());
+        saveByGift(gift.getGift_id(), count, gift.getLevel(), gift.getName());
     }
 
     /**
@@ -40,11 +40,12 @@ public class KindChipService {
      * @param gift_id 礼物id
      * @param fullChipCount 总共需要多少个碎片
      */
-    private void saveByGift(long gift_id, int fullChipCount, String giftName) {
+    private void saveByGift(long gift_id, int fullChipCount, int level,String giftName) {
         KindChip kindChip = new KindChip();
         kindChip.setType(KindChip.TYPE_GIFT);
         kindChip.setFor_id(gift_id);
         kindChip.setFullCount(fullChipCount);
+        kindChip.setLevel(level);
         kindChip.setName(giftName + KindChip.CHIP_WORD);
         kindChip.setStatus(0);
         kindChip.setCreateTime(new Date());
@@ -54,11 +55,15 @@ public class KindChipService {
 
     public void updateByGift(Gift gift) {
         int count = (int) gift.getPrice();
-        updateByGift(gift.getGift_id(), count, gift.getName());
+        updateByGift(gift.getGift_id(), count, gift.getLevel(), gift.getName());
     }
 
-    public void updateByGift(long gift_id, int fullChipCount, String giftName) {
-        kindChipRepo.updateByGift(gift_id, fullChipCount, KindChip.getNameByGiftName(giftName));
+    public void updateByGift(long gift_id, int fullChipCount, int level, String giftName) {
+        kindChipRepo.updateByGift(gift_id, fullChipCount, level ,KindChip.getNameByGiftName(giftName));
+    }
+
+    public List<KindChip> getAList(int count, long last_id) {
+        return kindChipRepo.getAList(count, last_id);
     }
 
 }

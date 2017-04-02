@@ -134,6 +134,13 @@ public class UserController {
         return new JsonResponse();
     }
 
+    @RequestMapping("/resetpwd")
+    @ResponseBody
+    public Object resetPwd(HttpServletRequest request) {
 
+
+
+        return null;
+    }
 
 }

@@ -77,4 +77,20 @@ public class TreeService {
         treeRepo.delete(user_id, type);
     }
 
+
+    /**
+     * 树成长值满了，爆出碎片
+     *
+     * @param user_id 用户id
+     * @param type    树的种类
+     */
+    public void burstOutChip(long user_id, int type) {
+        Tree tree = treeRepo.getTreeByUserIdAndType(user_id, type);
+        if (tree != null && tree.getProgress() == tree.getTotalNum()) {
+
+        }
+
+    }
+
+
 }

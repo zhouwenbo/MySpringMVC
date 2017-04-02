@@ -8,8 +8,8 @@
 
 
     <insert id="save" parameterType="com.fheebiy.domain.KindChip">
-        insert into kindchip (type, for_id, name,fullCount,status,createTime)
-        values (#{type},#{for_id},#{name},#{fullCount},#{status},#{createTime})
+        insert into kindchip (type, for_id, name,fullCount,level,status,createTime)
+        values (#{type},#{for_id},#{name},#{fullCount},#{level},#{status},#{createTime})
     </insert>
 
 

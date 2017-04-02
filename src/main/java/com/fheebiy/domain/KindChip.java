@@ -29,6 +29,9 @@ public class KindChip {
     /**总共多少个就能换一个礼物*/
     private int fullCount;
 
+    /**级别，和礼物级别对应*/
+    private int level;
+
     /**状态*/
     private int status;
 
@@ -91,8 +94,15 @@ public class KindChip {
         this.createTime = createTime;
     }
 
-
     public static String getNameByGiftName(String name) {
         return name + CHIP_WORD;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }

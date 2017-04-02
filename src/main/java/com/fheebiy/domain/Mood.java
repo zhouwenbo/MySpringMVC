@@ -13,7 +13,10 @@ public class Mood {
     private long user_id;
 
     /**心情文字*/
-    private String description;
+    private String content;
+
+    /**点赞数目*/
+    private int praiseCount;
 
     /**图片地址1*/
     private String pic1;
@@ -40,12 +43,13 @@ public class Mood {
         this.user_id = user_id;
     }
 
-    public String getDescription() {
-        return description;
+
+    public String getContent() {
+        return content;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public String getPic1() {
@@ -70,5 +74,13 @@ public class Mood {
 
     public void setPic3(String pic3) {
         this.pic3 = pic3;
+    }
+
+    public int getPraiseCount() {
+        return praiseCount;
+    }
+
+    public void setPraiseCount(int praiseCount) {
+        this.praiseCount = praiseCount;
     }
 }

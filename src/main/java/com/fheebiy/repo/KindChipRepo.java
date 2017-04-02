@@ -23,7 +23,10 @@ public interface KindChipRepo extends IRepo<KindChip> {
     @Select("select * from kindchip order by createTime desc")
     List<KindChip> getList(Object... obj);
 
-    @Update("update kindchip set fullCount = #{1}, name = #{2} where for_id = #{0}")
-    void updateByGift(long for_id, int fullChipCount, String name);
+    @Update("update kindchip set fullCount = #{1}, level = #{2}, name = #{3} where for_id = #{0}")
+    void updateByGift(long for_id, int fullChipCount, int level,String name);
+
+    @Select("select * from kindchip where kc_id > #{1} limit #{0}")
+    List<KindChip> getAList(int count, long last_id);
 
 }

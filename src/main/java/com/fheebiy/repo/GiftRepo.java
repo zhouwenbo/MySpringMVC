@@ -29,4 +29,9 @@ public interface GiftRepo {
      @Select("select * from gift where name = #{0} order by createTime desc limit 1 ")
      Gift getByName(String name);
 
+     @Select("select * from gift where gift_id > #{1} limit #{0}")
+     List<Gift> getAList(int count, long gift_id);
+
+
+
 }
