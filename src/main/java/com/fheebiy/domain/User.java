@@ -52,11 +52,11 @@ public class User {
     /**心情和种子在另外一张表，通过user_id关联*/
 
     /**上次签到时间*/
-    private Date lastCheckTime;
+    private long lastCheckTime;
 
-    private Date createTime;
+    private long createTime;
 
-    private Date updateTime;
+    private long updateTime;
 
     public long getUser_id() {
         return user_id;
@@ -138,19 +138,23 @@ public class User {
         this.avatar = avatar;
     }
 
-    public Date getCreateTime() {
+    public void setLastCheckTime(long lastCheckTime) {
+        this.lastCheckTime = lastCheckTime;
+    }
+
+    public long getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(long createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public long getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(long updateTime) {
         this.updateTime = updateTime;
     }
 
@@ -186,11 +190,7 @@ public class User {
         this.credit = credit;
     }
 
-    public Date getLastCheckTime() {
+    public long getLastCheckTime() {
         return lastCheckTime;
-    }
-
-    public void setLastCheckTime(Date lastCheckTime) {
-        this.lastCheckTime = lastCheckTime;
     }
 }

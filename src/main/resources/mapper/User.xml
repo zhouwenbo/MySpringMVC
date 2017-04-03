@@ -6,8 +6,8 @@
 <mapper namespace="com.fheebiy.repo.UserRepo">
 
     <insert id="save" parameterType="com.fheebiy.domain.User">
-        insert into user (user_name,phoneNum,password,token,nickName,age,sex,school,avatar,integral,gold,credit,createTime,updateTime)
-        values (#{user_name},#{phoneNum},#{password},#{token},#{nickName},#{age},#{sex},#{school},#{avatar},#{integral},#{gold},#{credit},#{createTime},#{updateTime})
+        insert into user (user_name,phoneNum,password,token,nickName,age,sex,school,avatar,area,integral,gold,credit,createTime,updateTime,lastCheckTime)
+        values (#{user_name},#{phoneNum},#{password},#{token},#{nickName},#{age},#{sex},#{school},#{avatar},#{area},#{integral},#{gold},#{credit},#{createTime},#{updateTime},#{lastCheckTime})
     </insert>
 
 </mapper>

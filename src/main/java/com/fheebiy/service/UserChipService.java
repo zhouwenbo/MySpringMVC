@@ -45,7 +45,7 @@ public class UserChipService {
             userChip.setUc_id(buyer_id);
             userChip.setCount(goodChip.getCount());
             userChip.setStatus(0);
-            userChip.setUpdateTime(new Date());
+            userChip.setUpdateTime(new Date().getTime());
             userChipRepo.save(userChip);
         }
         userChipRepo.updateCountByKcid(sellerUserChip.getCount() - goodChip.getCount(), kc_id, seller_id);

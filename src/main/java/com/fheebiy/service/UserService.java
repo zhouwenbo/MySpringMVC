@@ -42,8 +42,14 @@ public class UserService {
         user.setIntegral(100);
         user.setGold(0);
         user.setCredit(8000);
-        user.setCreateTime(new Date());
-        user.setUpdateTime(new Date());
+        user.setCreateTime(new Date().getTime());
+        user.setUpdateTime(new Date().getTime());
+        user.setLastCheckTime(0);
+        user.setUser_name("");
+        user.setNickName("");
+        user.setSchool("");
+        user.setArea("");
+        user.setAvatar("");
         userRepo.save(user);
 
         return user;
