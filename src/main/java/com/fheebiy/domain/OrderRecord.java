@@ -8,20 +8,31 @@ import java.util.Date;
  */
 public class OrderRecord {
 
-    /**主键*/
+    /**
+     * 主键
+     */
     private long order_id;
 
-    /**买家的user_id*/
+    /**
+     * 买家的user_id
+     */
     private long buy_user_id;
 
-    /**卖家的user_id*/
+    /**
+     * 卖家的user_id
+     */
     private long sell_usr_id;
 
-    /**交易时间*/
+    /**
+     * 交易时间
+     */
     private Date createTime;
 
-    /**交易金额*/
-    private int count;
+    /**
+     * 交易金额
+     */
+    private int price;
+
 
     public long getOrder_id() {
         return order_id;
@@ -55,11 +66,12 @@ public class OrderRecord {
         this.createTime = createTime;
     }
 
-    public int getCount() {
-        return count;
+    public int getPrice() {
+        return price;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setPrice(int price) {
+        this.price = price;
     }
 }
+

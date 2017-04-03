@@ -1,5 +1,6 @@
 package com.fheebiy.domain;
 
+
 /**
  * Created by cm on 2017/3/28.
  * 用户拥有的碎片
@@ -20,6 +21,12 @@ public class UserChip {
 
     /**名字todo？？可以保留，也可以通过ck_id去查*/
     private String name;
+
+    /**状态，0：默认 1：出售中*/
+    private int status;
+
+    /**更新时间*/
+    private long updateTime;
 
     public long getUc_id() {
         return uc_id;
@@ -59,5 +66,21 @@ public class UserChip {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public long getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(long updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

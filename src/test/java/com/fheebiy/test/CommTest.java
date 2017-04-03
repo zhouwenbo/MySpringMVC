@@ -57,7 +57,7 @@ public class CommTest {
     public void tokenTest() {
         for (int i = 0; i < 10; i++) {
             String s = StrUtil.getTokenByPwd("zhoenbo132");
-            System.out.println(s);
+            System.out.println(s.trim());
         }
     }
 
@@ -65,6 +65,30 @@ public class CommTest {
         int randNum = min + (int) (Math.random() * ((max - min) + 1));
         return randNum;
     }
+
+
+
+    @Test
+    public void listTest() {
+        List<String> strings = new ArrayList<String>();
+
+        String[] sts = new String[]{"11","22","22","33"};
+
+        for (int x = 0; x<sts.length; x++) {
+            strings.add(sts[x]);
+        }
+
+        for (String s : strings) {
+            if (s.equals("22")) {
+                s = "zhouwenbo";
+            }
+        }
+
+        System.out.print(strings.toString());
+
+
+    }
+
 
 
     public static char[] generateRandomArray(int num) {

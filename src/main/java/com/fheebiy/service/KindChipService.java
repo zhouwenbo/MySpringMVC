@@ -66,4 +66,14 @@ public class KindChipService {
         return kindChipRepo.getAList(count, last_id);
     }
 
+
+    public List<KindChip> getListByLevel(int level) {
+        return kindChipRepo.getListByLevel(level);
+    }
+
+
+    public List<KindChip> getByIds(String ids) {
+        return kindChipRepo.getByIds(ids);
+    }
+
 }

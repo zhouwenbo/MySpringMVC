@@ -1,5 +1,6 @@
 package com.fheebiy.controller.admin;
 
+import com.fheebiy.common.LogUtil;
 import com.fheebiy.common.web.PageContextUtil;
 import com.fheebiy.domain.Company;
 import com.fheebiy.domain.Gift;
@@ -49,8 +50,12 @@ public class GiftController {
     @ResponseBody
     public Object getAList(HttpServletRequest request) {
         int count = Integer.parseInt(request.getParameter("count"));
-        long last_id = Long.parseLong(request.getParameter("last_id"));
-        List<GiftDto> list = giftService.getAList(count, last_id);
+        long updateTime = Long.parseLong(request.getParameter("updateTime"));
+        if (updateTime == 0) {
+            updateTime = System.currentTimeMillis();
+        }
+        LogUtil.d("....................>","updateTime = " + updateTime);
+        List<GiftDto> list = giftService.getAList(count, updateTime);
         return new JsonResponse(list);
     }
 

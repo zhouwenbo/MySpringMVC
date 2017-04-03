@@ -13,13 +13,11 @@ import java.util.List;
 @Repository
 public interface KindChipRepo extends IRepo<KindChip> {
 
-    @Override
     void save(KindChip obj);
 
     @Select("select * from kindchip where name = #{0}")
     List<KindChip> getListByName(String name);
 
-    @Override
     @Select("select * from kindchip order by createTime desc")
     List<KindChip> getList(Object... obj);
 
@@ -28,5 +26,11 @@ public interface KindChipRepo extends IRepo<KindChip> {
 
     @Select("select * from kindchip where kc_id > #{1} limit #{0}")
     List<KindChip> getAList(int count, long last_id);
+
+    @Select("select * from kindchip where level = #{0} order by updateTime desc ")
+    List<KindChip> getListByLevel(int level);
+
+    @Select("select * from kindchip where kc_id in #{0}")
+    List<KindChip> getByIds(String ids);
 
 }

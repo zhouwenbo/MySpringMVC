@@ -35,7 +35,7 @@ public class GiftDto {
 
     private Date createTime;
 
-    private Date updateTime;
+    private long updateTime;
 
     private List<String> imgs;
 
@@ -104,11 +104,11 @@ public class GiftDto {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public long getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(long updateTime) {
         this.updateTime = updateTime;
     }
 

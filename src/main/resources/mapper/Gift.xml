@@ -21,7 +21,7 @@
     </insert>
 
     <update id="update"  parameterType="com.fheebiy.domain.Gift">
-        update gift set name=#{name},description=#{description},price=#{price},level=#{level},ourl=#{ourl},pic1=#{pic1},pic2=#{pic2},pic3=#{pic3},status=#{status}
+        update gift set name=#{name},description=#{description},price=#{price},level=#{level},ourl=#{ourl},pic1=#{pic1},pic2=#{pic2},pic3=#{pic3},status=#{status}, updateTime=#{updateTime}
         where gift_id = #{gift_id}
     </update>
 

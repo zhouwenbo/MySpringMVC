@@ -7,6 +7,7 @@ import com.fheebiy.domain.User;
 import com.fheebiy.repo.SmsCodeRepo;
 import com.fheebiy.rest.JsonResponse;
 import com.fheebiy.rest.JsonResponseHeader;
+import com.fheebiy.service.SeedService;
 import com.fheebiy.service.TreeService;
 import com.fheebiy.service.UserService;
 import org.apache.commons.lang.StringUtils;
@@ -31,6 +32,8 @@ public class UserController {
 
     public static final String ST_HAVE_CODE = "2";
 
+    public static final String ST_PWD_NAME = "3";
+
     @Autowired
     private UserService userService;
 
@@ -39,6 +42,9 @@ public class UserController {
 
     @Autowired
     private TreeService treeService;
+
+    @Autowired
+    private SeedService seedService;
 
     @RequestMapping("/find")
     public String editUser(Model model, @RequestParam(required = true) Long user_id) {
@@ -67,11 +73,12 @@ public class UserController {
 
     @RequestMapping("/login")
     @ResponseBody
-   public Object doLogin(HttpServletRequest request) {
+    public Object doLogin(HttpServletRequest request) {
         String phone = request.getParameter("phone");
         String pwd = request.getParameter("pwd");
         User user = userService.doLogin(phone, pwd);
         if (user != null) {
+            user.setPassword("");
             return new JsonResponse(user);
         } else {
             return new JsonResponse(JsonResponseHeader.STATUS_LOGIN_PASSWORD_ERROR, null);
@@ -113,22 +120,39 @@ public class UserController {
             }
         } else if (ST_HAVE_CODE.equals(st)) {
             if (StringUtils.isNotEmpty(phone) && StringUtils.isNotEmpty(code)) {
-                SmsCode smsCode = smsCodeRepo.findByPhoneAndCode(phone, code);
+                SmsCode smsCode = smsCodeRepo.findByPhoneAndCode(phone, code, 0);
                 if (smsCode != null) {
                     long createTime = smsCode.getCreateTime().getTime();
                     System.out.println("smsCode------------------!!" + smsCode.getPhoneNum() + " ,smsCode = " + smsCode.getCode_id());
                     if (System.currentTimeMillis() - createTime < 10 * DateUtil.ONE_MINUTE) {
-                        userService.saveUser(phone, pwd, nickName);
+                        //userService.saveUser(phone, pwd, nickName);
                         smsCodeRepo.updateStatus(smsCode.getCode_id(), SmsCode.STATUS_USED);
-                        User user = userService.getUserByPhone(phone);
-                        treeService.initSaveTwoTree(user.getUser_id());
-                        return new JsonResponse(user);
+                        //User user = userService.getUserByPhone(phone);
+                        //treeService.initSaveTwoTree(user.getUser_id());
+                        //return new JsonResponse(user);
+                        //return new JsonResponse();
                     } else {
                         return new JsonResponse(JsonResponseHeader.STATUS_REGISTER_CODE_DELAY, null);
                     }
+                } else {
+                    return new JsonResponse(JsonResponseHeader.STATUS_REGISTER_CODE_ERROR, null);
                 }
             } else {
-                new JsonResponse(JsonResponseHeader.STATUS_REGISTER_CODE_ERROR, null);
+                return new JsonResponse(JsonResponseHeader.STATUS_REGISTER_CODE_ERROR, null);
+            }
+        } else if (ST_PWD_NAME.equals(st)) {
+            if (StringUtils.isNotEmpty(phone) && StringUtils.isNotEmpty(code)) {
+                SmsCode smsCode = smsCodeRepo.findByPhoneAndCode(phone, code, 1);
+                if (smsCode != null) {
+                    userService.saveUser(phone, pwd, nickName);
+                    User user = userService.getUserByPhone(phone);
+                    //treeService.initSaveTwoTree(user.getUser_id());
+                    seedService.saveForUserRegister(user.getUser_id());
+                    user.setPassword("");
+                    return new JsonResponse(user);
+                } else {
+                    new JsonResponse(JsonResponseHeader.STATUS_REGISTER_CODE_ERROR, null);
+                }
             }
         }
         return new JsonResponse();
@@ -137,7 +161,6 @@ public class UserController {
     @RequestMapping("/resetpwd")
     @ResponseBody
     public Object resetPwd(HttpServletRequest request) {
-
 
 
         return null;

@@ -25,6 +25,9 @@ public class Tree {
     /**1：礼物树 2：愿望树*/
     private int type;
 
+    /**级别*/
+    private int level;
+
     /**成长值*/
     private long progress;
 
@@ -79,6 +82,14 @@ public class Tree {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }
 

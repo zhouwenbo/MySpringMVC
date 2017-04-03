@@ -1,6 +1,6 @@
 package com.fheebiy.domain;
 
-import java.util.Date;
+import java.util.*;
 
 /**
  * Created by cm on 2017/3/28.
@@ -51,9 +51,9 @@ public class Gift {
 
     private Date createTime;
 
-    private Date updateTime;
+    private long updateTime;
 
-
+    //level
     public static final int[] level1 = {1, 50};
     public static final int[] level2 = {50, 300};
     public static final int[] level3 = {300, 500};
@@ -117,11 +117,11 @@ public class Gift {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public long getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(long updateTime) {
         this.updateTime = updateTime;
     }
 
@@ -182,6 +182,133 @@ public class Gift {
 
     public static boolean levelIn(double price, int[] array) {
         return price >= array[0] && price < array[1];
+    }
+
+    /**
+     * 爆礼物分类
+     */
+    public static class BurstOutGroup {
+
+        private int min;
+
+        private int max;
+
+        private int level;
+
+        private int count;
+
+        private static Map<Integer, List<BurstOutGroup>> mapData = new HashMap();
+
+        {
+            mapData.put(1, getListLevel1());
+            mapData.put(2, getListLevel2());
+            mapData.put(3, getListLevel3());
+            mapData.put(4, getListLevel4());
+            mapData.put(5, getListLevel5());
+            mapData.put(6, getListLevel6());
+        }
+
+
+        public int getMin() {
+            return min;
+        }
+
+        public void setMin(int min) {
+            this.min = min;
+        }
+
+        public int getMax() {
+            return max;
+        }
+
+        public void setMax(int max) {
+            this.max = max;
+        }
+
+        public int getLevel() {
+            return level;
+        }
+
+        public void setLevel(int level) {
+            this.level = level;
+        }
+
+        public int getCount() {
+            return count;
+        }
+
+        public void setCount(int count) {
+            this.count = count;
+        }
+
+        public BurstOutGroup(int min, int max, int level, int count) {
+            this.min = min;
+            this.max = max;
+            this.level = level;
+            this.count = count;
+        }
+
+        public static List<BurstOutGroup> getBList(int level) {
+            return mapData.get(level);
+        }
+
+        public static List<BurstOutGroup> getListLevel1() {
+            List<BurstOutGroup> list = new ArrayList<BurstOutGroup>();
+            list.add(new BurstOutGroup(1, 10, 1, 5));
+            list.add(new BurstOutGroup(10, 20, 1, 20));
+            list.add(new BurstOutGroup(20, 30, 1, 30));
+            list.add(new BurstOutGroup(30, 40, 1, 15));
+            list.add(new BurstOutGroup(40, 50, 1, 30));
+            return list;
+        }
+
+        public static List<BurstOutGroup> getListLevel2() {
+            List<BurstOutGroup> list = new ArrayList<BurstOutGroup>();
+            list.add(new BurstOutGroup(50, 80, 2, 60));
+            list.add(new BurstOutGroup(80, 150, 2, 150));
+            list.add(new BurstOutGroup(150, 300, 2, 90));
+            return list;
+        }
+
+        public static List<BurstOutGroup> getListLevel3() {
+            List<BurstOutGroup> list = new ArrayList<BurstOutGroup>();
+            list.add(new BurstOutGroup(300, 400, 3, 300));
+            list.add(new BurstOutGroup(400, 500, 3, 300));
+            return list;
+        }
+
+
+        public static List<BurstOutGroup> getListLevel4() {
+            List<BurstOutGroup> list = new ArrayList<BurstOutGroup>();
+            list.add(new BurstOutGroup(500, 600, 4, 350));
+            list.add(new BurstOutGroup(600, 700, 4, 350));
+            list.add(new BurstOutGroup(700, 1000, 4, 300));
+            return list;
+        }
+
+
+        public static List<BurstOutGroup> getListLevel5() {
+            List<BurstOutGroup> list = new ArrayList<BurstOutGroup>();
+            list.add(new BurstOutGroup(1000, 1200, 5, 225));
+            list.add(new BurstOutGroup(1200, 1500, 5, 450));
+            list.add(new BurstOutGroup(1500, 1700, 5, 450));
+            list.add(new BurstOutGroup(1700, 2000, 5, 375));
+            return list;
+        }
+
+
+        public static List<BurstOutGroup> getListLevel6() {
+            List<BurstOutGroup> list = new ArrayList<BurstOutGroup>();
+            list.add(new BurstOutGroup(2000, 2500, 6, 800));
+            list.add(new BurstOutGroup(2500, 2800, 6, 800));
+            list.add(new BurstOutGroup(2800, 3000, 6, 800));
+            list.add(new BurstOutGroup(3000, 3500, 6, 400));
+            list.add(new BurstOutGroup(3500, 4000, 6, 600));
+            list.add(new BurstOutGroup(4000, 4500, 6, 400));
+            list.add(new BurstOutGroup(4500, 3000000, 6, 200));
+            return list;
+        }
+
     }
 
 }

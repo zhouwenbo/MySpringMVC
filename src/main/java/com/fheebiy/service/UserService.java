@@ -19,16 +19,16 @@ public class UserService {
     private UserRepo userRepo;
 
 
-    public List<User> getAll(){
+    public List<User> getAll() {
         return userRepo.getList();
     }
 
-    public User getUserById(long user_id){
+    public User getUserById(long user_id) {
         return userRepo.getById(user_id);
     }
 
-    public User doLogin(String phoneNum, String password){
-        return  userRepo.doLogin(phoneNum, password);
+    public User doLogin(String phoneNum, String password) {
+        return userRepo.doLogin(phoneNum, password);
     }
 
     public User saveUser(String phone, String pwd, String nickName) {
@@ -52,5 +52,19 @@ public class UserService {
     public User getUserByPhone(String phone) {
         return userRepo.getUserByPhoneNum(phone);
     }
+
+    /**
+     * 更新金币数量:原因可能是买卖，或者额度，积分兑换等，但总之是要更新金币数量的
+     */
+    public void updateGold(long updateToCount, long user_id) {
+        userRepo.updateGold(updateToCount, user_id);
+    }
+
+
+    public List<User> getByIds(String ids) {
+        ids = "(" + ids + ")";
+        return userRepo.getByIds(ids);
+    }
+
 
 }

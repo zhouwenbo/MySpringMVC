@@ -12,9 +12,9 @@ public class HttpSender {
 	public static String sendSMS(String phone) {
 		String code = String.valueOf(generateRandomArray(6));;
 		String url = "http://sms.253.com/msg/";// 应用地址
-		String un = "N4276342";// 账号
-		String pw = "N2Lk23g5Bic2";// 密码
-		String msg = "【253云通讯】您好，您的验证码是"+ code;// 短信内容
+		String un = "N8839264";// 账号
+		String pw = "Dzo4Zfpnb";// 密码
+		String msg = "【爱校】您好，您的验证码是"+ code;// 短信内容
 		String rd = "0";// 是否需要状态报告，需要1，不需要0
 		String ex = null;// 扩展码
 

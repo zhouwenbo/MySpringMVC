@@ -3,6 +3,7 @@ package com.fheebiy.repo;
 import com.fheebiy.domain.User;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -26,4 +27,11 @@ public interface UserRepo {
     User doLogin(@Param("phoneNum")String phoneNum, @Param("password")String password);
 
     void save(User user);
+
+
+    @Update("update user set gold = #{0} where user_id = #{1}")
+    void updateGold(long count, long user_id);
+
+    @Select("select * from user where user_id in #{ids}")
+    List<User> getByIds(String ids);
 }

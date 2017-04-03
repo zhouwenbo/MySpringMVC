@@ -46,7 +46,7 @@ public class GiftService {
         Gift g = getById(id);
         if (g == null) {
             gift.setCreateTime(new Date());
-            gift.setUpdateTime(new Date());
+            gift.setUpdateTime(new Date().getTime());
             gift.setStatus(0);
             gift.initLevel();
             save(gift);
@@ -58,15 +58,15 @@ public class GiftService {
                 LogUtil.d(TAG, "getGiftByName = NULL and name = " + gift.getName());
             }
         } else {
-            gift.setUpdateTime(new Date());
+            gift.setUpdateTime(new Date().getTime());
             gift.initLevel();
             update(gift);
             kindChipService.updateByGift(gift);
         }
     }
 
-    public List<GiftDto> getAList(int count, long last_id) {
-        List<Gift>  list = giftRepo.getAList(count, last_id);
+    public List<GiftDto> getAList(int count, long updateTime) {
+        List<Gift>  list = giftRepo.getAList(count, updateTime);
         List<GiftDto> dtoList = new ArrayList<GiftDto>();
         for(Gift gift : list) {
             GiftDto dto = GiftDto.fromGift(gift);
@@ -74,5 +74,10 @@ public class GiftService {
         }
         return dtoList;
     }
+
+    public List<Gift> getListByLevel(int level) {
+        return giftRepo.getListByLevel(level);
+    }
+
 
 }

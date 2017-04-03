@@ -21,6 +21,19 @@ public class JsonResponseHeader {
     public static final int STATUS_REGISTER_CODE_EXIST = 413; //用户手机号码已经存在
     public static final int STATUS_REGISTER_CODE_SMS_ERROR = 414; //短信没有发送成功
 
+
+    //购买相关错误码
+    public static final int STATUS_CHIP_NOT_EXIST = 600;    //所购买的碎片不存在
+    public static final int STATUS_GOLD_NOT_ENOUGH = 601;   //金币不够
+
+
+
+    //爆礼物相关错误码
+    public static final int STATUS_DATA_ERROR = 700;        //数据错误，就是没有爆出礼物
+
+
+
+
     public static final int STATUS_MALLID_ERROR = 600;
     //门店相关错误码
     public static final int STATUS_MENDIAN_NAME_NULL = 601;

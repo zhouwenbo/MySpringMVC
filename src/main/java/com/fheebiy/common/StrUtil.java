@@ -8,7 +8,7 @@ public class StrUtil {
     public static final String SALT = "LOVE_SHCOOLE";
 
     public static String getTokenByPwd(String pwd) {
-        return MD5Util.encode(pwd, SALT);
+        return MD5Util.encode(pwd, SALT).trim();
     }
 
 }
