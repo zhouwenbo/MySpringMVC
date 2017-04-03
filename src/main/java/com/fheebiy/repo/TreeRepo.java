@@ -23,4 +23,7 @@ public interface TreeRepo {
     @Delete("delete from tree where user_id = #{0} and type = #{1} ")
     void delete(long user_id, int type);
 
+    @Select("select * from tree where user_id = #{0} ")
+    Tree getLastedOne(long user_id);
+
 }

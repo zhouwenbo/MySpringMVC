@@ -1,11 +1,9 @@
-package com.fheebiy.domain;
-
+package com.fheebiy.dto;
 
 /**
- * Created by cm on 2017/3/28.
- * 用户拥有的碎片
+ * Created by cm on 2017/4/3.
  */
-public class UserChip {
+public class UserChipDto {
 
     /**主键，不过应该没什么用处*/
     private long uc_id;
@@ -25,14 +23,17 @@ public class UserChip {
     /**交易完毕的有几个*/
     private int soldCount;
 
-    /**名字todo？？可以保留，也可以通过ck_id去查*/
-    private String name;
-
     /**状态，0：默认 1：出售中*/
     private int status;
 
     /**更新时间*/
     private long updateTime;
+
+    /**从KindChip中查询*/
+    private String name;
+
+    /**从kindChip中查询*/
+    private int level;
 
     public long getUc_id() {
         return uc_id;
@@ -66,30 +67,6 @@ public class UserChip {
         this.count = count;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public long getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(long updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
     public int getSellingCount() {
         return sellingCount;
     }
@@ -104,5 +81,37 @@ public class UserChip {
 
     public void setSoldCount(int soldCount) {
         this.soldCount = soldCount;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public long getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(long updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }

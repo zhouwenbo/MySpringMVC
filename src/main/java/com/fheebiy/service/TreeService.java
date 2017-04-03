@@ -1,10 +1,7 @@
 package com.fheebiy.service;
 
 import com.fheebiy.common.LogUtil;
-import com.fheebiy.domain.Gift;
-import com.fheebiy.domain.KindChip;
-import com.fheebiy.domain.UserChip;
-import com.fheebiy.domain.Tree;
+import com.fheebiy.domain.*;
 import com.fheebiy.repo.TreeRepo;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +33,9 @@ public class TreeService {
         Tree giftTree = new Tree();
         giftTree.setType(Tree.TYPE_GIFT);
         giftTree.setUser_id(user_id);
-        giftTree.setTotalNum(Tree.GIFT_TREE_TOTAL_NUM);
+        //giftTree.setTotalNum(Tree.GIFT_TREE_TOTAL_NUM);
         giftTree.setProgress(0);
-        giftTree.setCreateTime(new Date());
+       // giftTree.setCreateTime(new Date());
         treeRepo.save(giftTree);
     }
 
@@ -46,9 +43,9 @@ public class TreeService {
         Tree giftTree = new Tree();
         giftTree.setType(Tree.TYPE_DESIRE);
         giftTree.setUser_id(user_id);
-        giftTree.setTotalNum(Tree.DESIRE_TREE_TOTAL_NUM);
+        //giftTree.setTotalNum(Tree.DESIRE_TREE_TOTAL_NUM);
         giftTree.setProgress(0);
-        giftTree.setCreateTime(new Date());
+        //giftTree.setCreateTime(new Date());
         treeRepo.save(giftTree);
     }
 
@@ -355,6 +352,21 @@ public class TreeService {
             ids.add(userChip.getKc_id());
         }
         return userChipList;
+    }
+
+
+    public Tree plantBySeed(Seed seed) {
+        Tree tree = new Tree();
+        tree.setLevel(seed.getLevel());
+        tree.setType(seed.getType());
+        tree.setUser_id(seed.getUser_id());
+        tree.setProgress(0);
+        tree.initTotalNum();
+        tree.setUpdateTime(System.currentTimeMillis());
+        tree.setCreateTime(System.currentTimeMillis());
+
+        treeRepo.save(tree);
+        return treeRepo.getTreeByUserIdAndType(seed.getUser_id(), seed.getType());
     }
 
 

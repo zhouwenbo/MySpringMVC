@@ -20,6 +20,9 @@ public interface UserRepo {
     @Select("select * from user where user_id = #{user_id}")
     User getById(@Param("user_id")long user_id);
 
+    @Select("select * from user where token = #{0}")
+    User getByToken(String token);
+
     @Select("select * from user where phoneNum = #{0} limit 1")
     User getUserByPhoneNum(String phoneNum);
 

@@ -1,7 +1,5 @@
 package com.fheebiy.domain;
 
-import java.util.Date;
-
 /**
  * Created by zwb on 14-3-22.
  */
@@ -48,6 +46,9 @@ public class User {
 
     /**额度*/
     private long credit;
+
+    /**个性签名*/
+    private String signature;
 
     /**心情和种子在另外一张表，通过user_id关联*/
 
@@ -192,5 +193,13 @@ public class User {
 
     public long getLastCheckTime() {
         return lastCheckTime;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
     }
 }

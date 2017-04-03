@@ -1,18 +1,12 @@
 package com.fheebiy.domain;
 
-import java.util.Date;
-
 /**
  * Created by cm on 2017/3/28.
  * 树
  */
 public class Tree {
 
-    /**礼物树*/
-    public static final int GIFT_TREE_TOTAL_NUM = 100;
 
-    /**愿望树*/
-    public static final int DESIRE_TREE_TOTAL_NUM = 100;
 
     public static final int TYPE_GIFT = 1;
 
@@ -22,19 +16,29 @@ public class Tree {
 
     private long user_id;
 
-    /**1：礼物树 2：愿望树*/
+    /**
+     * 1：礼物树 2：愿望树
+     */
     private int type;
 
-    /**级别*/
+    /**
+     * 级别
+     */
     private int level;
 
-    /**成长值*/
+    /**
+     * 成长值
+     */
     private long progress;
 
-    /**总共需要的成长值*/
+    /**
+     * 总共需要的成长值
+     */
     private long totalNum;
 
-    private Date createTime;
+    private long createTime;
+
+    private long updateTime;
 
     public long getTree_id() {
         return tree_id;
@@ -76,12 +80,20 @@ public class Tree {
         this.totalNum = totalNum;
     }
 
-    public Date getCreateTime() {
+    public long getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(long createTime) {
         this.createTime = createTime;
+    }
+
+    public long getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(long updateTime) {
+        this.updateTime = updateTime;
     }
 
     public int getLevel() {
@@ -91,5 +103,39 @@ public class Tree {
     public void setLevel(int level) {
         this.level = level;
     }
+
+    public void initTotalNum() {
+        setTotalNum(getT(level));
+    }
+
+    public static long getT(int level) {
+        int x = 0;
+        switch (level) {
+            case 1:
+                x = 1000;
+                break;
+            case 2:
+                x = 8000;
+                break;
+            case 3:
+                x = 15000;
+                break;
+            case 4:
+                x = 100000;
+                break;
+            case 5:
+                x = 180000;
+                break;
+            case 6:
+                x = 250000;
+                break;
+            default:
+                x = 250000;
+                break;
+        }
+        return x;
+    }
+
+
 }
 

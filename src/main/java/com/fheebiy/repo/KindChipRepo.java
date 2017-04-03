@@ -1,6 +1,7 @@
 package com.fheebiy.repo;
 
 import com.fheebiy.domain.KindChip;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
@@ -30,7 +31,7 @@ public interface KindChipRepo extends IRepo<KindChip> {
     @Select("select * from kindchip where level = #{0} order by updateTime desc ")
     List<KindChip> getListByLevel(int level);
 
-    @Select("select * from kindchip where kc_id in #{0}")
-    List<KindChip> getByIds(String ids);
+    @Select("select * from kindchip where kc_id in (${coupon_ids})")
+    List<KindChip> getByIds(@Param("coupon_ids")String coupon_ids);
 
 }

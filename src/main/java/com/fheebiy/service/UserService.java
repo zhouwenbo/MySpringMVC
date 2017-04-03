@@ -35,7 +35,7 @@ public class UserService {
         User user = new User();
         user.setPhoneNum(phone);
         user.setPassword(pwd);
-        user.setToken(StrUtil.getTokenByPwd(pwd));
+        user.setToken(StrUtil.getTokenByPwd(pwd+phone));
         user.setNickName(nickName);
         user.setAge(0);
         user.setSex(0);
@@ -46,10 +46,11 @@ public class UserService {
         user.setUpdateTime(new Date().getTime());
         user.setLastCheckTime(0);
         user.setUser_name("");
-        user.setNickName("");
+        user.setNickName(nickName);
         user.setSchool("");
         user.setArea("");
         user.setAvatar("");
+        user.setSignature("");
         userRepo.save(user);
 
         return user;
@@ -70,6 +71,10 @@ public class UserService {
     public List<User> getByIds(String ids) {
         ids = "(" + ids + ")";
         return userRepo.getByIds(ids);
+    }
+
+    public User getByToken(String token) {
+        return userRepo.getByToken(token);
     }
 
 

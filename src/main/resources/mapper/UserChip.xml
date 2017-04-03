@@ -7,10 +7,10 @@
 
 
 
- <!--   <insert id="save" parameterType="com.fheebiy.domain.UserChip">
-        insert into userChip (user_id, type, progress, totalNum, status, createTime)
-        values (#{code},#{phoneNum},#{updateTime},#{createTime},#{status}, #{createTime})
-    </insert>-->
+    <insert id="save" parameterType="com.fheebiy.domain.UserChip">
+        insert into userChip (kc_id,user_id, count, sellingCount, soldCount, name, status,updateTime)
+        values (#{kc_id},#{user_id},#{count},#{sellingCount},#{soldCount}, #{name},#{status},#{updateTime})
+    </insert>
 
     <!-- <update id="updateProgress"  parameterType="com.fheebiy.domain.Company">
          update company set name = #{name},contact=#{contact},phone=#{phone},loginName=#{loginName},password=#{password},address=#{address},remark=#{remark}
