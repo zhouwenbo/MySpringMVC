@@ -58,11 +58,8 @@ public class UserChipController {
         int count = HttpParameterUtil.getParameterInt(request, "count");
         int price = HttpParameterUtil.getParameterInt(request, "price");
 
-
         int status = userChipService.sell(token, uc_id, kc_id, count, price);
-
         return new JsonResponse(status);
-
     }
 
 
