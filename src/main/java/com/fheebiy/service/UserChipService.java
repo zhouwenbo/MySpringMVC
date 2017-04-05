@@ -81,11 +81,6 @@ public class UserChipService {
         return userChipDtoList;
     }
 
-    public void sell(long user_id, long kc_id, int count, int price) {
-        goodChipService.saveForSell(user_id, kc_id, count, price);
-    }
-
-
     public int sell(String token, long uc_id, long kc_id, int count, int price) {
         User user = userService.getByToken(token);
         UserChip userChip = userChipRepo.getById(uc_id);
