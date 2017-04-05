@@ -28,7 +28,7 @@ public interface UserChipRepo extends IRepo<UserChip>{
     @Select("select * from userchip where uc_id = #{0}")
     UserChip getById(long uc_id);
 
-    @Update("update userchip set sellingCount = #{1} where uc_id = #{0}")
-    void updateForSell(long uc_id, int sellingCount);
+    @Update("update userchip set sellingCount = #{1}, updateTime = #{2} where uc_id = #{0}")
+    void updateForSell(long uc_id, int sellingCount, long updateTime);
 
 }

@@ -93,7 +93,7 @@ public class UserChipService {
         }
 
         goodChipService.saveForSell(user.getUser_id(), kc_id, count, price);
-        userChipRepo.updateForSell(uc_id, userChip.getSellingCount() + count);
+        userChipRepo.updateForSell(uc_id, userChip.getSellingCount() + count, System.currentTimeMillis());
         return JsonResponseHeader.STATUS_OK;
     }
 
