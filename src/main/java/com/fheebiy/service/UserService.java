@@ -69,7 +69,6 @@ public class UserService {
 
 
     public List<User> getByIds(String ids) {
-        ids = "(" + ids + ")";
         return userRepo.getByIds(ids);
     }
 

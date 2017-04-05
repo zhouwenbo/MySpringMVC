@@ -35,6 +35,6 @@ public interface UserRepo {
     @Update("update user set gold = #{0} where user_id = #{1}")
     void updateGold(long count, long user_id);
 
-    @Select("select * from user where user_id in #{ids}")
-    List<User> getByIds(String ids);
+    @Select("select * from user where user_id in (${ids})")
+    List<User> getByIds(@Param("ids")String ids);
 }

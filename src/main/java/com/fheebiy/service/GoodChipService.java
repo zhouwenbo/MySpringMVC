@@ -97,7 +97,7 @@ public class GoodChipService {
                 dto.setPrice(goodChip.getPrice());
                 dto.setCreateTime(goodChip.getCreateTime());
                 dto.setUpdateTime(goodChip.getUpdateTime());
-                User user = userHashMap.get(goodChip.getKc_id());
+                User user = userHashMap.get(goodChip.getUser_id());
                 if (user != null) {
                     dto.setNickName(user.getNickName());
                     dto.setAvatar(user.getAvatar());
