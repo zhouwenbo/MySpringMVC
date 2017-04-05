@@ -20,7 +20,8 @@ import java.util.List;
 /**
  * Created by cm on 2017/4/2.
  */
-@Controller("/goodchip")
+@Controller
+@RequestMapping("/goodchip")
 public class GoodChipController {
 
     @Autowired
@@ -65,8 +66,8 @@ public class GoodChipController {
     @RequestMapping("/alist")
     @ResponseBody
     public Object getAList(HttpServletRequest request) {
-        int count = Integer.parseInt(request.getParameter("count"));
-        long updateTime = Long.parseLong(request.getParameter("updateTime"));
+        int count = HttpParameterUtil.getParameterInt(request, "count");
+        long updateTime = HttpParameterUtil.getParameterLong(request, "updateTime");
         if (updateTime == 0) {
             updateTime = System.currentTimeMillis();
         }
