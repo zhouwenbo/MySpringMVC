@@ -27,6 +27,10 @@ public class GoodChipService {
     @Autowired
     private KindChipService kindChipService;
 
+    public GoodChip getByUserIdAndKcId(long user_id, long kc_id) {
+        return goodChipRepo.getByUserAndKcId(user_id, kc_id);
+    }
+
     public void saveForSell(long user_id, long kc_id, int count, int price) {
 
         GoodChip gChip = goodChipRepo.getByUserAndKcId(user_id, kc_id);

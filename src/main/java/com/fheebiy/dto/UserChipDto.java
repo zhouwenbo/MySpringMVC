@@ -35,6 +35,9 @@ public class UserChipDto {
     /**从kindChip中查询*/
     private int level;
 
+    /**价格，如果sellingCount > 0的话，就去GoodChip中查询价格*/
+    private int price;
+
     public long getUc_id() {
         return uc_id;
     }
@@ -113,5 +116,13 @@ public class UserChipDto {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

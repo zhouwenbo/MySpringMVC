@@ -61,6 +61,11 @@ public class UserChipService {
             dto.setUser_id(userChip.getUser_id());
             dto.setCount(userChip.getCount());
             dto.setSellingCount(userChip.getSellingCount());
+            if (userChip.getSellingCount() > 0) {
+               GoodChip goodChip = goodChipService.getByUserIdAndKcId(user_id, userChip.getKc_id());
+               dto.setPrice(goodChip.getPrice());
+
+            }
             dto.setSoldCount(userChip.getSoldCount());
             dto.setStatus(0);
             dto.setUpdateTime(userChip.getUpdateTime());
