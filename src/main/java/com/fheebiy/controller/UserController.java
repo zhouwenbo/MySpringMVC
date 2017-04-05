@@ -2,6 +2,7 @@ package com.fheebiy.controller;
 
 import com.fheebiy.common.DateUtil;
 import com.fheebiy.common.smsgcode.HttpSender;
+import com.fheebiy.common.web.HttpParameterUtil;
 import com.fheebiy.domain.SmsCode;
 import com.fheebiy.domain.User;
 import com.fheebiy.repo.SmsCodeRepo;
@@ -165,5 +166,16 @@ public class UserController {
 
         return null;
     }
+
+
+    @RequestMapping("/exchangegold")
+    @ResponseBody
+    public Object exchangeGold(HttpServletRequest request) {
+        String token = HttpParameterUtil.getParameter(request, "token");
+        int count = HttpParameterUtil.getParameterInt(request, "count");
+        int code = userService.exchangeGold(token, count);
+        return new JsonResponse(code);
+    }
+
 
 }

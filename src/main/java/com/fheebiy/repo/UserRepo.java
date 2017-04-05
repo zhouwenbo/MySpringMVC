@@ -37,4 +37,8 @@ public interface UserRepo {
 
     @Select("select * from user where user_id in (${ids})")
     List<User> getByIds(@Param("ids")String ids);
+
+    @Update("update user set credit = #{1}, gold = #{2}, updateTime = #{3} where user_id = #{0}")
+    void updateByExchangeGold(long user_id, long credit, long goldCount, long updateTime);
+
 }

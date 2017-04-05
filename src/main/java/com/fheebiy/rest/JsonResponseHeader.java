@@ -10,8 +10,10 @@ public class JsonResponseHeader {
     public static final int STATUS_BACKWARD_OK = 1;
 
 
-    //登陆注册失败
+    //通用错误
+    public static final int STATUS_USER_NOT_EXIST = 501;    //用户不存在
 
+    //登陆注册失败
     public static final int STATUS_LOGIN_PASSWORD_ERROR = 403;   //账号或者密码错误
     public static final int STATUS_LOGIN_ENDDATE_ERROR = 409;
     public static final int STATUS_LOGIN_STOP_ERROR = 410;     //账号停用
@@ -29,9 +31,13 @@ public class JsonResponseHeader {
     public static final int STATUS_USER_CHIP_NOT_EXIST = 700;   //出售的碎片不存在
     public static final int STATUS_ILLEGAL_OPERATION = 701;     //非法操作
 
-
     //爆礼物相关错误码
     public static final int STATUS_DATA_ERROR = 800;        //数据错误，就是没有爆出礼物
+
+
+    //额度兑换金币
+
+    public static final int STATUS_CREDIT_NOT_ENOUGH = 852; //额度不够
 
 
     public static final int STATUS_MALLID_ERROR = 600;

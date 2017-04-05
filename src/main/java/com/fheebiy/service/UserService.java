@@ -3,6 +3,8 @@ package com.fheebiy.service;
 import com.fheebiy.common.StrUtil;
 import com.fheebiy.repo.UserRepo;
 import com.fheebiy.domain.User;
+import com.fheebiy.rest.JsonResponse;
+import com.fheebiy.rest.JsonResponseHeader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +37,7 @@ public class UserService {
         User user = new User();
         user.setPhoneNum(phone);
         user.setPassword(pwd);
-        user.setToken(StrUtil.getTokenByPwd(pwd+phone));
+        user.setToken(StrUtil.getTokenByPwd(pwd + phone));
         user.setNickName(nickName);
         user.setAge(0);
         user.setSex(0);
@@ -77,4 +79,22 @@ public class UserService {
     }
 
 
+    public int exchangeGold(String token, int count) {
+        User user = getByToken(token);
+        if (user == null) {
+            return JsonResponseHeader.STATUS_USER_NOT_EXIST;
+        }
+
+        long credit = user.getCredit();
+        if (credit < count) {
+            return JsonResponseHeader.STATUS_CREDIT_NOT_ENOUGH;
+        }
+
+        int spendCredit = count/10;
+        long currentCredit = user.getCredit() - spendCredit;
+        long currentGold = user.getGold() + count;
+        userRepo.updateByExchangeGold(user.getUser_id(), currentCredit, currentGold, System.currentTimeMillis());
+
+        return JsonResponseHeader.STATUS_OK;
+    }
 }
