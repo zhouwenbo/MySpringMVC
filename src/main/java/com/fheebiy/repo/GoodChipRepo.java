@@ -24,4 +24,11 @@ public interface GoodChipRepo {
 
     @Select("select * from goodchip where updateTime < #{1} and status = 0 order by updateTime desc limit #{0}")
     List<GoodChip>  getAList(int count, long createTime);
+
+    @Select("select * from goodchip where user_id = #{0} and kc_id = #{1} limit 1")
+    GoodChip getByUserAndKcId(long user_id, long kc_id);
+
+    @Select("update goodchip set count = #{1}, price =#{2}, updateTime = #{3} where gc_id = #{0}")
+    GoodChip updateCountAndPrice(long gc_id, int count, int price, long updateTime);
+
 }

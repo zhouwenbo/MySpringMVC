@@ -8,8 +8,8 @@
 
 
     <insert id="saveForSell" parameterType="com.fheebiy.domain.GoodChip">
-        insert into goodchip (kc_id, user_id, count, price,status,createTime)
-        values (#{kc_id},#{user_id},#{count},#{price},#{status}, #{createTime})
+        insert into goodchip (kc_id, user_id, count, price, status, createTime, updateTime)
+        values (#{kc_id},#{user_id},#{count},#{price},#{status}, #{createTime},#{updateTime})
     </insert>
 
     <!-- <update id="updateProgress"  parameterType="com.fheebiy.domain.Company">

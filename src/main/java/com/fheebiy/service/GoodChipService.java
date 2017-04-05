@@ -28,14 +28,23 @@ public class GoodChipService {
     private KindChipService kindChipService;
 
     public void saveForSell(long user_id, long kc_id, int count, int price) {
-        GoodChip goodChip = new GoodChip();
-        goodChip.setUser_id(user_id);
-        goodChip.setKc_id(kc_id);
-        goodChip.setCount(count);
-        goodChip.setPrice(price);
-        goodChip.setStatus(0);
-        goodChip.setCreateTime(new Date().getTime());
-        goodChipRepo.saveForSell(goodChip);
+
+        GoodChip gChip = goodChipRepo.getByUserAndKcId(user_id, kc_id);
+        if (gChip != null) { //追加出售，则只需要更新个数，和价格还有updateTime即可
+            int totalCount = count + gChip.getCount();
+            int totalPrice = gChip.getPrice() + price;
+            goodChipRepo.updateCountAndPrice(gChip.getGc_id(), totalCount, totalPrice, System.currentTimeMillis());
+        } else {            //没有则直接，添加即可
+            GoodChip goodChip = new GoodChip();
+            goodChip.setUser_id(user_id);
+            goodChip.setKc_id(kc_id);
+            goodChip.setCount(count);
+            goodChip.setPrice(price);
+            goodChip.setStatus(0);
+            goodChip.setCreateTime(System.currentTimeMillis());
+            goodChip.setUpdateTime(System.currentTimeMillis());
+            goodChipRepo.saveForSell(goodChip);
+        }
     }
 
     public GoodChip getById(long gc_id) {

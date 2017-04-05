@@ -88,12 +88,12 @@ public class UserChipService {
             return JsonResponseHeader.STATUS_USER_CHIP_NOT_EXIST;
         }
 
-        if (userChip.getKc_id() != kc_id || userChip.getUser_id() != user.getUser_id() || userChip.getCount() < count) {
+        if (userChip.getKc_id() != kc_id || userChip.getUser_id() != user.getUser_id() || userChip.getCount() - userChip.getSellingCount() < count) {
             return JsonResponseHeader.STATUS_ILLEGAL_OPERATION;
         }
 
         goodChipService.saveForSell(user.getUser_id(), kc_id, count, price);
-        userChipRepo.updateForSell(uc_id, count);
+        userChipRepo.updateForSell(uc_id, userChip.getSellingCount() + count);
         return JsonResponseHeader.STATUS_OK;
     }
 
