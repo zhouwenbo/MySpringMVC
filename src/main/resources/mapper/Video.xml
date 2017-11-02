@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.fheebiy.repo.VideoRepo">
+
+    <select id="list" parameterType="map" resultType="com.fheebiy.domain.Video">
+        select * from tb_hvideo
+        <where>
+            <if test="tag != null and tag!='' ">
+                and tag like concat('%', #{name}, '%')
+            </if>
+
+            and utime &lt; #{utime}
+        </where>
+        order by utime desc limit #{count}
+    </select>
+
+</mapper>
