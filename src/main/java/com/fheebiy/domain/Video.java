@@ -28,7 +28,7 @@ public class Video {
 
     private long duration;
 
-    private String tagstr;
+    private String tag;
 
     private long viewcount;
 
@@ -124,12 +124,12 @@ public class Video {
         this.duration = duration;
     }
 
-    public String getTagstr() {
-        return tagstr;
+    public String getTag() {
+        return tag;
     }
 
-    public void setTagstr(String tagstr) {
-        this.tagstr = tagstr;
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 
     public long getViewcount() {
