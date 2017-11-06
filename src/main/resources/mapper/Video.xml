@@ -9,7 +9,7 @@
         select * from tb_hvideo
         <where>
             <if test="tag != null and tag!='' ">
-                and tag like concat('%', #{name}, '%')
+                and tag like concat('%', #{tag}, '%')
             </if>
 
             and utime &lt; #{utime}
