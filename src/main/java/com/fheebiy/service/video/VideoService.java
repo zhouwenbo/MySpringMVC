@@ -26,4 +26,15 @@ public class VideoService {
         return videoRepo.list(map);
     }
 
+
+    public void scan(long vid) {
+        videoRepo.scan(vid);
+    }
+
+
+    public void rose(long vid) {
+        videoRepo.rose(vid);
+    }
+
+
 }

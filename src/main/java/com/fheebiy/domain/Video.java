@@ -32,6 +32,8 @@ public class Video {
 
     private long viewcount;
 
+    private long rosecount;
+
     private int source;
 
     private String action;
@@ -138,6 +140,14 @@ public class Video {
 
     public void setViewcount(long viewcount) {
         this.viewcount = viewcount;
+    }
+
+    public long getRosecount() {
+        return rosecount;
+    }
+
+    public void setRosecount(long rosecount) {
+        this.rosecount = rosecount;
     }
 
     public int getSource() {

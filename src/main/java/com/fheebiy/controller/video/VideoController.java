@@ -35,4 +35,21 @@ public class VideoController {
         return new JsonResponse(list);
     }
 
+    @RequestMapping("/scan")
+    @ResponseBody
+    public Object optScan(HttpServletRequest request) {
+        long vid = HttpParameterUtil.getParameterInt(request, "vid");
+        videoService.scan(vid);
+        return new JsonResponse();
+    }
+
+    @RequestMapping("/rose")
+    @ResponseBody
+    public Object optRose(HttpServletRequest request) {
+        long vid = HttpParameterUtil.getParameterInt(request, "vid");
+        videoService.rose(vid);
+        return new JsonResponse();
+    }
+
+
 }
